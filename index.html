@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EULA Labs Ventures — Building the Future of Accessible AI</title>
+    <meta name="description" content="A diversified venture studio combining real estate assets, open-source robotics research, and community-funded AI infrastructure.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #0a0a0b;
+            --surface: #111113;
+            --surface-2: #1a1a1f;
+            --border: #2a2a30;
+            --text: #e8e8ed;
+            --text-muted: #8a8a95;
+            --accent: #6366f1;
+            --accent-glow: rgba(99, 102, 241, 0.15);
+            --green: #22c55e;
+            --amber: #f59e0b;
+            --blue: #3b82f6;
+            --rose: #f43f5e;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(10, 10, 11, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            padding: 0 2rem;
+        }
+        nav .inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            height: 64px;
+        }
+        nav .logo {
+            font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em;
+        }
+        nav .logo span { color: var(--accent); }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; margin-left: 2rem; transition: color 0.2s; }
+        nav a:hover { color: var(--text); }
+
+        /* SECTIONS */
+        section { padding: 6rem 2rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        /* HERO */
+        .hero {
+            padding: 10rem 2rem 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto; margin-right: auto;
+        }
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--accent), #a78bfa, var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat .number {
+            font-size: 2rem; font-weight: 700; color: var(--text);
+            letter-spacing: -0.02em;
+        }
+        .hero-stat .label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+        /* PILLARS */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .pillar-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: border-color 0.3s, transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .pillar-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .pillar-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .pillar-card:nth-child(1) .pillar-icon { background: rgba(34, 197, 94, 0.12); }
+        .pillar-card:nth-child(2) .pillar-icon { background: rgba(59, 130, 246, 0.12); }
+        .pillar-card:nth-child(3) .pillar-icon { background: rgba(168, 85, 247, 0.12); }
+        .pillar-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+        .pillar-card .subtitle { font-size: 0.85rem; color: var(--accent); font-weight: 500; margin-bottom: 1rem; }
+        .pillar-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .pillar-metrics {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+        }
+        .metric { }
+        .metric .value { font-size: 1.1rem; font-weight: 700; }
+        .metric .desc { font-size: 0.75rem; color: var(--text-muted); }
+
+        /* THESIS */
+        .thesis-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .thesis-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .thesis-content h2 {
+            font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+        .thesis-content p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1rem; }
+        .thesis-points { list-style: none; }
+        .thesis-points li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        .thesis-points li:last-child { border-bottom: none; }
+        .thesis-points .icon {
+            width: 32px; height: 32px; min-width: 32px;
+            background: var(--accent-glow);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem;
+            margin-top: 0.15rem;
+        }
+        .thesis-points .text strong { display: block; font-size: 0.95rem; margin-bottom: 0.2rem; }
+        .thesis-points .text span { font-size: 0.85rem; color: var(--text-muted); }
+
+        /* FLOW DIAGRAM */
+        .flow-section h2 { font-size: 2.5rem; font-weight: 800; text-align: center; letter-spacing: -0.03em; margin-bottom: 1rem; }
+        .flow-subtitle { text-align: center; color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem; }
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+        .flow-node {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            min-width: 180px;
+        }
+        .flow-node .emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+        .flow-node h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .flow-node p { font-size: 0.75rem; color: var(--text-muted); }
+        .flow-arrow { font-size: 1.5rem; color: var(--accent); }
+
+        /* STEWARD ROLE */
+        .role-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .role-header { text-align: center; margin-bottom: 3rem; }
+        .role-header h2 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1rem; }
+        .role-header p { color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+        .role-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        .role-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .role-card p { font-size: 0.875rem; color: var(--text-muted); }
+        .role-card .tag {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.3rem 0.8rem;
+            border-radius: 100px;
+            background: var(--accent-glow);
+            color: var(--accent);
+        }
+
+        /* SCORING */
+        .scoring-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+        .scoring-table th {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 2px solid var(--border);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+        }
+        .scoring-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .scoring-table tr:hover td { background: var(--surface-2); }
+        .multiplier {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .tier-1 { color: var(--green); }
+        .tier-2 { color: var(--blue); }
+        .tier-3 { color: var(--accent); }
+        .tier-4 { color: var(--amber); }
+        .tier-5 { color: var(--text-muted); }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 8rem 2rem;
+            position: relative;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .cta-section h2 {
+            font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em;
+            margin-bottom: 1rem;
+        }
+        .cta-section p { color: var(--text-muted); max-width: 500px; margin: 0 auto 2.5rem; }
+        .cta-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        footer a { color: var(--text-muted); text-decoration: none; }
+        footer a:hover { color: var(--text); }
+        .footer-links { margin-bottom: 1rem; }
+        .footer-links a { margin: 0 1rem; }
+
+        /* SECTION HEADERS */
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .thesis-content { grid-template-columns: 1fr; gap: 2rem; }
+            .hero-stats { gap: 1.5rem; }
+            .flow-diagram { flex-direction: column; }
+            .flow-arrow { transform: rotate(90deg); }
+            nav a { display: none; }
+            section { padding: 4rem 1.25rem; }
+            .hero { padding: 8rem 1.25rem 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="inner">
+        <div class="logo">EULA <span>Labs</span> Ventures</div>
+        <div>
+            <a href="#pillars">Portfolio</a>
+            <a href="#thesis">Thesis</a>
+            <a href="#steward">Steward Role</a>
+            <a href="#scoring">Scoring</a>
+            <a href="#connect">Connect</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-badge">Investor Partnership Opportunity</div>
+        <h1>Real Assets. Open Research.<br><span class="gradient">Community-Funded AI.</span></h1>
+        <p>A diversified venture studio combining hard real estate assets, open-source assistive robotics, and community-governed AI infrastructure. We're looking for a financial steward to manage fund oversight and compliance as we scale.</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="number">$1.1M</div>
+                <div class="label">Real Estate Capital Stack</div>
+            </div>
+            <div class="hero-stat">
+                <div class="number">10M+</div>
+                <div class="label">Parkinson's Patients Worldwide</div>
+            </div>
+            <div class="hero-stat">
+                <div class="number">3</div>
+                <div class="label">Revenue Pillars</div>
+            </div>
+            <div class="hero-stat">
+                <div class="number">&lt;$500</div>
+                <div class="label">Robotics Build Cost</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+    <div class="container">
+        <div class="section-label">The Portfolio</div>
+        <h2 style="font-size:2.5rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:0.5rem;">Three Pillars, One Vision</h2>
+        <p style="color:var(--text-muted);max-width:600px;font-size:1rem;">Each pillar is independently viable. Together, they create a vertically integrated ecosystem where real assets back research, and research feeds the platform.</p>
+
+        <div class="pillars-grid">
+            <!-- EULA Properties -->
+            <div class="pillar-card">
+                <div class="pillar-icon">&#127968;</div>
+                <h3>EULA Properties</h3>
+                <div class="subtitle">Hard Asset Foundation</div>
+                <p>Pembrook Compound &mdash; a 3-unit residential property in Houston, TX serving as operational headquarters, AI training campus, and investor collateral. Real property backing every dollar invested.</p>
+                <div class="pillar-metrics">
+                    <div class="metric">
+                        <div class="value" style="color:var(--green);">$1.095M</div>
+                        <div class="desc">Total Capital Stack</div>
+                    </div>
+                    <div class="metric">
+                        <div class="value">3 Units</div>
+                        <div class="desc">7,392 sq ft Total</div>
+                    </div>
+                    <div class="metric">
+                        <div class="value">$1.035M</div>
+                        <div class="desc">Appraised Value</div>
+                    </div>
+                    <div class="metric">
+                        <div class="value">Houston, TX</div>
+                        <div class="desc">Pembrook St Campus</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ARIA Research -->
+            <div class="pillar-card">
+                <div class="pillar-icon">&#129302;</div>
+                <h3>ARIA Research</h3>
+                <div class="subtitle">Open-Source Robotics for Parkinson's</div>
+                <p>Affordable AI companions under $500 built on Raspberry Pi 5. Open-source research designing assistive robots for movement and neurological challenges. Findings reinvested into more AI-powered medical solutions.</p>
+                <div class="pillar-metrics">
+                    <div class="metric">
+                        <div class="value" style="color:var(--blue);">4 Products</div>
+                        <div class="desc">Bloom, Guide, Frame, Rover</div>
+                    </div>
+                    <div class="metric">
+                        <div class="value">$220-$430</div>
+                        <div class="desc">Build Cost Per Unit</div>
+                    </div>
+                    <div class="metric">
+                        <div class="value">68%</div>
+                        <div class="desc">FoG Reduction (Cueing)</div>
+                    </div>
+                    <div class="metric">
+                        <div class="value">MIT License</div>
+                        <div class="desc">Fully Open Source</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Claw Protocol -->
+            <div class="pillar-card">
+                <div class="pillar-icon">&#129430;</div>
+                <h3>The Claw Protocol</h3>
+                <div class="subtitle">Community-Funded AI Infrastructure</div>
+                <p>A contribution-weighted framework where members submit AI agents into a shared Agent Metaverse. Infrastructure investors earn the highest multiplier. Community-governed with transparent token distribution and voting rights.</p>
+                <div class="pillar-metrics">
+                    <div class="metric">
+                        <div class="value" style="color:var(--accent);">5x</div>
+                        <div class="desc">Infrastructure Multiplier</div>
+                    </div>
+                    <div class="metric">
+                        <div class="value">5 Tiers</div>
+                        <div class="desc">Contribution Scoring</div>
+                    </div>
+                    <div class="metric">
+                        <div class="value">Non-Transferable</div>
+                        <div class="desc">Earn-Only Tokens</div>
+                    </div>
+                    <div class="metric">
+                        <div class="value">OpenClaw</div>
+                        <div class="desc">Browser Agent Foundation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- THESIS -->
+<section id="thesis" class="thesis-section">
+    <div class="container">
+        <div class="thesis-content">
+            <div>
+                <div class="section-label">Investment Thesis</div>
+                <h2>Why These Three Together</h2>
+                <p>Each pillar de-risks the others. Real estate provides tangible collateral. Research attracts grants and credibility. The protocol creates scalable network effects. A financial steward ensures every dollar is tracked and compliant.</p>
+            </div>
+            <div>
+                <ul class="thesis-points">
+                    <li>
+                        <div class="icon">&#127968;</div>
+                        <div class="text">
+                            <strong>Hard Asset Backing</strong>
+                            <span>Every investment is collateralized by the Pembrook compound &mdash; real property you can visit in Houston, TX. No speculative-only risk.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon">&#127891;</div>
+                        <div class="text">
+                            <strong>Grant-Eligible Research</strong>
+                            <span>ARIA's Parkinson's focus opens doors to NIH, NSF, and foundation grants. Social impact attracts non-dilutive capital.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon">&#128200;</div>
+                        <div class="text">
+                            <strong>Platform Network Effects</strong>
+                            <span>Every agent submitted to The Claw Protocol increases the value for all participants. Infrastructure investors earn the most as the network grows.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon">&#128274;</div>
+                        <div class="text">
+                            <strong>Compliance-First Design</strong>
+                            <span>Independent fund oversight, non-transferable tokens, transparent scoring &mdash; built for regulatory clarity from day one.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT FLOWS -->
+<section id="flow" class="flow-section">
+    <div class="container">
+        <div class="section-label" style="text-align:center;">How Capital Flows</div>
+        <h2>From Investment to Impact</h2>
+        <p class="flow-subtitle">Revenue from real estate and robotics funds research. Research validates the technology. The protocol scales it to the community.</p>
+
+        <div class="flow-diagram">
+            <div class="flow-node">
+                <div class="emoji">&#128176;</div>
+                <h4>Capital In</h4>
+                <p>Investment + grants</p>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node">
+                <div class="emoji">&#127968;</div>
+                <h4>Real Estate</h4>
+                <p>Revenue + collateral</p>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node">
+                <div class="emoji">&#129302;</div>
+                <h4>ARIA Research</h4>
+                <p>Products + IP</p>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node">
+                <div class="emoji">&#129430;</div>
+                <h4>Claw Protocol</h4>
+                <p>Scale + community</p>
+            </div>
+            <div class="flow-arrow">&rarr;</div>
+            <div class="flow-node">
+                <div class="emoji">&#127793;</div>
+                <h4>Returns</h4>
+                <p>Revenue share + tokens</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STEWARD ROLE -->
+<section id="steward" class="role-section">
+    <div class="container">
+        <div class="role-header">
+            <div class="section-label">Open Position</div>
+            <h2>Community Financial Steward</h2>
+            <p>An independent third party responsible for fund oversight, regulatory compliance, and token distribution integrity across all three pillars.</p>
+        </div>
+
+        <div class="role-grid">
+            <div class="role-card">
+                <h4>&#128202; Fund Oversight</h4>
+                <p>Manage allocation of investment capital across real estate, research, and infrastructure. Track inflows, outflows, and ROI per pillar. Produce quarterly financial reports for all stakeholders.</p>
+                <div class="tag">M&A + PE Experience Ideal</div>
+            </div>
+            <div class="role-card">
+                <h4>&#9878;&#65039; Regulatory Compliance</h4>
+                <p>Ensure token distribution follows securities law. Structure contribution scoring to comply with SEC guidance on utility tokens. Maintain audit trails for all transactions.</p>
+                <div class="tag">Compliance Critical</div>
+            </div>
+            <div class="role-card">
+                <h4>&#128176; Token Distribution</h4>
+                <p>Oversee the 5-tier contribution scoring system. Verify multipliers are applied correctly. Ensure non-transferable tokens track voting rights and revenue share accurately.</p>
+                <div class="tag">Financial Modeling</div>
+            </div>
+            <div class="role-card">
+                <h4>&#129309; Steward of Trust</h4>
+                <p>Serve as the independent party that both investors and contributors trust. No creative control &mdash; purely financial management and governance. Transparent reporting to the community.</p>
+                <div class="tag">Tier 1 Contributor &middot; 5x</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SCORING -->
+<section id="scoring">
+    <div class="container">
+        <div class="section-label">Governance Model</div>
+        <h2 style="font-size:2.5rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:0.5rem;">5-Tier Contribution Scoring</h2>
+        <p style="color:var(--text-muted);max-width:600px;margin-bottom:2rem;">Compute is king. Infrastructure investors earn the highest multiplier because they provide the foundation everything else runs on. Tokens are non-transferable &mdash; earned through contribution only.</p>
+
+        <table class="scoring-table">
+            <thead>
+                <tr>
+                    <th>Tier</th>
+                    <th>Contribution Type</th>
+                    <th>Multiplier</th>
+                    <th>Examples</th>
+                    <th>Governance Weight</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Tier 1</strong></td>
+                    <td>Infrastructure Investment</td>
+                    <td><span class="multiplier tier-1">5x</span></td>
+                    <td>Servers, GPUs, cloud credits, capital</td>
+                    <td>Highest voting power</td>
+                </tr>
+                <tr>
+                    <td><strong>Tier 2</strong></td>
+                    <td>Compute Donation</td>
+                    <td><span class="multiplier tier-2">3x</span></td>
+                    <td>Spare compute, bandwidth, storage</td>
+                    <td>High voting power</td>
+                </tr>
+                <tr>
+                    <td><strong>Tier 3</strong></td>
+                    <td>Agents & Code</td>
+                    <td><span class="multiplier tier-3">2x</span></td>
+                    <td>AI agents, tools, integrations</td>
+                    <td>Standard voting power</td>
+                </tr>
+                <tr>
+                    <td><strong>Tier 4</strong></td>
+                    <td>Research & Knowledge</td>
+                    <td><span class="multiplier tier-4">1.5x</span></td>
+                    <td>Papers, documentation, tutorials</td>
+                    <td>Advisory voting</td>
+                </tr>
+                <tr>
+                    <td><strong>Tier 5</strong></td>
+                    <td>Community & Governance</td>
+                    <td><span class="multiplier tier-5">1x</span></td>
+                    <td>Moderation, events, onboarding</td>
+                    <td>Participation voting</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top:2rem;padding:1.5rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;">
+            <p style="font-size:0.9rem;color:var(--text-muted);"><strong style="color:var(--green);">Financial Steward = Tier 1 Contributor.</strong> Managing fund oversight and compliance for the portfolio qualifies as infrastructure investment &mdash; the highest tier. Infrastructure investments also decay at half speed (floor 0.5 vs 0.3), meaning your contribution score compounds over time.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section id="connect" class="cta-section">
+    <div class="container">
+        <div class="section-label">Next Step</div>
+        <h2>Let's Build This Together</h2>
+        <p>We're looking for a financial steward who believes in accessible AI, transparent governance, and building something that lasts.</p>
+        <a href="mailto:durayveonbutler@gmail.com?subject=EULA%20Labs%20Ventures%20-%20Financial%20Steward%20Interest" class="cta-btn">Start the Conversation</a>
+        <div style="margin-top:2rem;">
+            <a href="https://dbutler-a11y.github.io/aria-research/" style="color:var(--text-muted);text-decoration:none;font-size:0.875rem;margin:0 1rem;">ARIA Research &rarr;</a>
+            <a href="https://github.com/dbutler-a11y/agent-workstation" style="color:var(--text-muted);text-decoration:none;font-size:0.875rem;margin:0 1rem;">Agent Workstation &rarr;</a>
+            <a href="https://github.com/moltbot47/open-claw" style="color:var(--text-muted);text-decoration:none;font-size:0.875rem;margin:0 1rem;">Claw Protocol &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-links">
+            <a href="https://github.com/dbutler-a11y">GitHub (dbutler-a11y)</a>
+            <a href="https://github.com/moltbot47">GitHub (moltbot47)</a>
+        </div>
+        <p>&copy; 2026 EULA Labs Ventures. Houston, TX.</p>
+    </div>
+</footer>
+
+</body>
+</html>
