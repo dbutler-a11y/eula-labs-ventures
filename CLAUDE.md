@@ -1,7 +1,7 @@
 # EULA Labs Ventures
 
 ## What This Is
-$2M investor vision site for **EULA Labs — Equitable Unified Labs for Advancement**. A diversified venture studio combining real estate (EULA Properties), open-source assistive robotics (ARIA Research), and community-funded AI infrastructure (The Claw Protocol Collective). Raising $2M to purchase the Pembrook compound in Houston, TX and build community-owned AI research & education infrastructure.
+$2M investor vision site for **EULA Labs — Empowering Universal Learning through AI**. A diversified venture studio combining real estate (EULA Properties), open-source assistive robotics (ARIA Research), and community-funded AI infrastructure (The Claw Protocol Collective). Raising $2M to purchase the Pembrook compound in Houston, TX and build community-owned AI research & education infrastructure.
 
 ## Capital Raise: $2M
 - **$1M** — Purchase Pembrook compound (3 units, 7,392 sq ft) → AI research & education training center
@@ -50,8 +50,8 @@ CLAUDE.md                     # This file
 
 ### 1. EULA Properties (~/eulaproperties/)
 - Pembrook Compound: 3 units, 7,392 sq ft, Houston TX
-- 9132 ($440K HQ), 9134 ($315K Compute Lab), 9136 ($280K Education Center)
-- Total appraised: $1.035M | Hard asset collateral for investors
+- 9132 ($440K HQ), 9134 ($385K Compute Lab), 9136 ($385K Education Center)
+- Total appraised: $1.21M | Hard asset collateral for investors
 - Site: github.com/dbutler-a11y/eulaproperties-test-current
 
 ### 2. ARIA Research (~/aria-research/) — Flagship Initiative

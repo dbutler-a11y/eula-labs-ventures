@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EULA Labs — Equitable Unified Labs for Advancement</title>
+    <title>EULA Labs — Engineered Units of Leverage & Automation</title>
     <meta name="description" content="Raising $2M to build an AI research, education, and compute center in Houston, TX. Real estate backed. Community funded. Open source.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -233,8 +233,10 @@
         .role-card p { font-size: 0.85rem; margin: 0; }
 
         /* BUDGET BAR */
-        .budget-bar { display: flex; border-radius: 8px; overflow: hidden; height: 36px; margin: 1.5rem 0; }
-        .budget-bar div { display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 600; color: white; }
+        .budget-bar { margin: 1.5rem 0; display: flex; flex-direction: column; gap: 6px; }
+        .budget-bar-row { display: flex; align-items: center; gap: 10px; }
+        .budget-bar-fill { height: 10px; border-radius: 5px; flex-shrink: 0; }
+        .budget-bar-label { font-size: 0.8rem; font-weight: 600; color: var(--color-text); white-space: nowrap; }
 
         /* ALT SECTION */
         .section-alt { background: var(--color-bg-alt); }
@@ -315,7 +317,7 @@
     <div class="container">
         <div class="hero-badge">Investment Opportunity &mdash; $2M Raise</div>
         <h1>EULA Labs</h1>
-        <div class="hero-subtitle">Equitable Unified Labs for Advancement</div>
+        <div class="hero-subtitle">Empowering Universal Learning through AI</div>
         <p class="hero-desc">Raising $2M to purchase a 3-unit campus in Houston and build community-owned AI infrastructure. Real estate backed. Community funded. Open source research. Transparent governance.</p>
         <div class="hero-buttons">
             <a href="#vision" class="btn btn-primary">View the Vision &darr;</a>
@@ -354,7 +356,7 @@
         <div class="two-col">
             <div>
                 <h2>The Vision</h2>
-                <p><strong>EULA Labs</strong> is building an AI research, education, and compute center in Houston, TX &mdash; a physical campus where open-source robotics, community-governed AI agents, and developer training operate under one roof.</p>
+                <p><strong>EULA Labs</strong> &mdash; <em>Engineered Units of Leverage &amp; Automation</em> &mdash; is building an AI research, education, and compute center in Houston, TX. A physical campus where open-source robotics, community-governed AI agents, and developer training operate under one roof.</p>
                 <p>We believe AI agents will become as common and essential as social media platforms are today. The question is whether that future is owned by a few corporations or governed by the communities that build it.</p>
                 <p>Our model is simple: <strong>open-source research</strong> produces public goods &mdash; robotics designs, agent frameworks, educational content. <strong>Managed services</strong> built on those foundations generate revenue. Revenue flows back to contributors through a transparent, contribution-weighted system.</p>
                 <p>The Pembrook compound provides hard asset backing for every dollar invested. The research produces real products. The infrastructure scales through community participation.</p>
@@ -368,11 +370,11 @@
                 <div class="callout green">
                     <p><strong>Revenue Allocation (from published research paper):</strong></p>
                     <div class="budget-bar">
-                        <div style="width:40%;background:#38a169;">40% Contributors</div>
-                        <div style="width:25%;background:#3182ce;">25% Compute</div>
-                        <div style="width:15%;background:#2c5282;">15% Ops</div>
-                        <div style="width:10%;background:#d69e2e;">10% Reserve</div>
-                        <div style="width:10%;background:#6b46c1;">10% Education</div>
+                        <div class="budget-bar-row"><div class="budget-bar-fill" style="width:100%;background:#38a169;"></div><span class="budget-bar-label">40% Contributors</span></div>
+                        <div class="budget-bar-row"><div class="budget-bar-fill" style="width:62%;background:#3182ce;"></div><span class="budget-bar-label">25% Compute</span></div>
+                        <div class="budget-bar-row"><div class="budget-bar-fill" style="width:37%;background:#2c5282;"></div><span class="budget-bar-label">15% Ops</span></div>
+                        <div class="budget-bar-row"><div class="budget-bar-fill" style="width:25%;background:#d69e2e;"></div><span class="budget-bar-label">10% Reserve</span></div>
+                        <div class="budget-bar-row"><div class="budget-bar-fill" style="width:25%;background:#6b46c1;"></div><span class="budget-bar-label">10% Education</span></div>
                     </div>
                     <p style="font-size:0.85rem;">65% of all revenue goes directly to contributors and infrastructure &mdash; not extracted by VCs or corporate interests.</p>
                 </div>
@@ -398,13 +400,13 @@
             </div>
             <div class="card property-card">
                 <div class="address">9134 Pembrook St</div>
-                <div class="price">$315,000</div>
+                <div class="price">$385,000</div>
                 <div class="use">Compute Lab &amp; Server Room</div>
                 <p style="font-size:0.85rem;">3 bed / 4 bath &mdash; GPU racks, networking infrastructure, ARIA robotics lab</p>
             </div>
             <div class="card property-card">
                 <div class="address">9136 Pembrook St</div>
-                <div class="price">$280,000</div>
+                <div class="price">$385,000</div>
                 <div class="use">Education &amp; Co-Working</div>
                 <p style="font-size:0.85rem;">3 bed / 4 bath &mdash; Developer training, workshops, community events</p>
             </div>
@@ -414,7 +416,7 @@
             <div class="container">
                 <div class="stats-grid">
                     <div>
-                        <div class="stat-number">$1.035M</div>
+                        <div class="stat-number">$1.21M</div>
                         <div class="stat-label">Combined Appraised Value</div>
                     </div>
                     <div>
@@ -434,7 +436,7 @@
         </div>
 
         <div class="callout green" style="margin-top:2rem;">
-            <p><strong>Hard asset backing.</strong> Every dollar invested is collateralized by real property with a combined appraised value of $1.035M. This is not speculative &mdash; it is real estate you can visit, inspect, and verify.</p>
+            <p><strong>Hard asset backing.</strong> Every dollar invested is collateralized by real property with a combined appraised value of $1.21M. This is not speculative &mdash; it is real estate you can visit, inspect, and verify.</p>
         </div>
     </div>
 </section>
@@ -631,7 +633,7 @@
 
                 <h3 style="margin-top:2rem;">Investor Protections</h3>
                 <ul class="pillar-features">
-                    <li>Hard asset backing (Pembrook compound, $1.035M appraised)</li>
+                    <li>Hard asset backing (Pembrook compound, $1.21M appraised)</li>
                     <li>Separate SPVs &mdash; liability isolation per pillar</li>
                     <li>Non-transferable membership interests (no speculation)</li>
                     <li>Milestone-based capital deployment</li>
@@ -805,7 +807,7 @@
 <section class="cta-section">
     <div class="container">
         <h2>Join the Founding Round</h2>
-        <p>We're building the future of accessible AI &mdash; backed by real assets, governed by the community, and open to everyone.</p>
+        <p><em>Equitable Unified Labs for Advancement.</em> Backed by real assets, governed by the community, and open to everyone.</p>
         <div>
             <a href="mailto:durayveonbutler@gmail.com?subject=EULA%20Labs%20-%20Founding%20Round%20Interest" class="btn btn-primary">Start the Conversation</a>
             <a href="https://github.com/moltbot47/open-claw/blob/main/paper/coordinated-intelligence-systems.md" class="btn btn-secondary" target="_blank">Read the Research Paper</a>
