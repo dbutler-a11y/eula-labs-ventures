@@ -78,7 +78,17 @@ CLAUDE.md                     # This file
 2. ARIA Device Pre-Orders + Grants → $5K-$15K + pipeline
 3. AI Consulting (EULA Labs brand) → $5K-$10K/mo
 4. GPU-as-a-Service (own compute) → $3K-$8K/mo
-5. Pembrook Rental + Events → $3K-$6K/mo
+5. Pembrook Rental + Events → $5K-$10K/mo
+
+## Action Items
+- [ ] Publish outstanding research paper: **Coordinated Intelligence Systems** (Claw Protocol)
+- [ ] Publish outstanding research paper: **Blood Pressure Research**
+- [ ] Publish outstanding research paper: **Cure Reversal Research**
+- [ ] Engage securities attorney (2-week Form C filing deadline)
+- [ ] Engage CPA for reviewed financial statements (first-time issuer, 3-7 days)
+- [ ] Select Reg CF funding portal (Wefunder, Republic, or StartEngine)
+- [ ] Form EULA Labs Ventures LLC in Delaware
+- [ ] Send DeAngelo the investor vision site link
 
 ## Related Projects
 - ~/eula-labs/ — EULA Labs main brand/consultancy landing page

@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form C — EULA Labs Ventures LLC | Regulation Crowdfunding Offering Statement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --color-primary: #1a365d;
+            --color-secondary: #2c5282;
+            --color-accent: #3182ce;
+            --color-text: #1a202c;
+            --color-text-secondary: #4a5568;
+            --color-text-muted: #718096;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f7fafc;
+            --color-border: #e2e8f0;
+            --color-success: #38a169;
+            --color-warning: #d69e2e;
+            --color-danger: #e53e3e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-sans);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--color-text);
+            background: var(--color-bg);
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+        /* HEADER */
+        .doc-header {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+        .doc-header h1 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .doc-header .subtitle {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        .doc-header .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            font-size: 0.85rem;
+            opacity: 0.85;
+        }
+        .doc-header .meta strong { opacity: 1; }
+
+        /* ATTORNEY ALERT */
+        .attorney-alert {
+            background: #fffbeb;
+            border: 2px solid var(--color-warning);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .attorney-alert h2 {
+            font-family: var(--font-serif);
+            color: #92400e;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        .attorney-alert p { font-size: 0.9rem; margin-bottom: 0.75rem; }
+
+        .checklist { list-style: none; padding: 0; }
+        .checklist li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #fef3c7;
+        }
+        .checklist li::before {
+            content: '\2610';
+            position: absolute;
+            left: 0;
+            font-size: 1.1rem;
+        }
+        .checklist li strong { color: #92400e; }
+
+        /* SECTIONS */
+        .section {
+            margin: 2.5rem 0;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .section:last-child { border-bottom: none; }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        h3 {
+            font-family: var(--font-sans);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        p { margin-bottom: 0.75rem; }
+
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        thead { background: var(--color-bg-alt); }
+        th {
+            font-weight: 600;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border-bottom: 2px solid var(--color-border);
+            color: var(--color-text-secondary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--color-border);
+            vertical-align: top;
+        }
+        tr:last-child td { border-bottom: none; }
+
+        /* ATTORNEY PLACEHOLDER */
+        .atty {
+            background: #fef2f2;
+            border: 1px dashed var(--color-danger);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            font-size: 0.85rem;
+            color: #991b1b;
+        }
+        .atty::before {
+            content: '\2709 ATTORNEY: ';
+            font-weight: 700;
+        }
+
+        /* PRE-FILLED DATA */
+        .prefilled {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            font-size: 0.85rem;
+            color: #166534;
+        }
+        .prefilled::before {
+            content: '\2713 PRE-FILLED: ';
+            font-weight: 700;
+        }
+
+        /* ENTITY TREE */
+        .entity-tree {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            line-height: 2;
+        }
+
+        /* RISK ITEMS */
+        .risk-item {
+            margin: 1rem 0;
+            padding: 1rem 1.25rem;
+            background: var(--color-bg-alt);
+            border-left: 3px solid var(--color-warning);
+            border-radius: 0 8px 8px 0;
+        }
+        .risk-item h4 {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+        .risk-item p { font-size: 0.85rem; margin: 0; color: var(--color-text-secondary); }
+
+        /* TIMELINE */
+        .timeline-item {
+            display: flex;
+            gap: 1.25rem;
+            margin: 1rem 0;
+            align-items: flex-start;
+        }
+        .timeline-day {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: white;
+            background: var(--color-accent);
+            border-radius: 6px;
+            padding: 0.25rem 0.75rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .timeline-desc { font-size: 0.9rem; }
+
+        /* FOOTER */
+        .doc-footer {
+            background: var(--color-bg-alt);
+            border-top: 1px solid var(--color-border);
+            padding: 2rem 0;
+            margin-top: 3rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            body { font-size: 11pt; }
+            .container { max-width: 100%; padding: 0; }
+            .doc-header { background: white !important; color: var(--color-primary) !important; border-bottom: 3px solid var(--color-primary); padding: 1rem 0; }
+            .doc-header .meta { color: var(--color-text-secondary); }
+            .attorney-alert { break-inside: avoid; }
+            .section { break-inside: avoid; }
+            .risk-item { break-inside: avoid; }
+            table { break-inside: avoid; }
+            .atty { background: #fff5f5 !important; }
+            .prefilled { background: #f0fff4 !important; }
+        }
+
+        @media (max-width: 600px) {
+            .doc-header .meta { flex-direction: column; gap: 0.5rem; }
+            .timeline-item { flex-direction: column; gap: 0.5rem; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- DOCUMENT HEADER -->
+<div class="doc-header">
+    <div class="container">
+        <h1>FORM C &mdash; Offering Statement</h1>
+        <div class="subtitle">Regulation Crowdfunding (17 CFR &sect; 227.201)</div>
+        <div class="meta">
+            <div><strong>Issuer:</strong> EULA Labs Ventures LLC</div>
+            <div><strong>Offering:</strong> $2,000,000</div>
+            <div><strong>Securities:</strong> LLC Membership Interests</div>
+            <div><strong>Filing Deadline:</strong> 2 Weeks</div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- ATTORNEY FILING CHECKLIST -->
+<div class="attorney-alert">
+    <h2>Attorney Filing Checklist &mdash; 2-Week Deadline</h2>
+    <p>This draft contains all available company data pre-filled (marked in <span style="color:#166534;font-weight:600;">green</span>). Items requiring attorney completion are marked in <span style="color:#991b1b;font-weight:600;">red</span>. The goal is EDGAR filing within <strong>14 calendar days</strong>.</p>
+
+    <h3>Week 1: Entity Formation &amp; Document Preparation</h3>
+    <ul class="checklist">
+        <li><strong>Day 1&ndash;2:</strong> Form EULA Labs Ventures LLC in Delaware (or confirm existing formation)</li>
+        <li><strong>Day 1&ndash;2:</strong> Obtain EIN from IRS for new entity</li>
+        <li><strong>Day 2&ndash;3:</strong> Draft Operating Agreement with governance provisions (5-tier scoring, membership interests)</li>
+        <li><strong>Day 3&ndash;4:</strong> Select registered funding portal (Wefunder, Republic, or StartEngine)</li>
+        <li><strong>Day 3&ndash;5:</strong> Engage CPA firm for reviewed financial statements (first-time issuer exception under Rule 227.201(t))</li>
+        <li><strong>Day 4&ndash;5:</strong> Finalize Form C disclosures &mdash; review all sections below, fill attorney-required fields</li>
+        <li><strong>Day 5&ndash;7:</strong> Draft subscription agreement and investor disclosures</li>
+    </ul>
+
+    <h3>Week 2: Filing &amp; Platform Onboarding</h3>
+    <ul class="checklist">
+        <li><strong>Day 8&ndash;9:</strong> Complete EDGAR registration (if not already registered) and obtain CIK number</li>
+        <li><strong>Day 9&ndash;10:</strong> Prepare Form C XML filing for EDGAR submission</li>
+        <li><strong>Day 10&ndash;11:</strong> Submit Form C to SEC via EDGAR</li>
+        <li><strong>Day 11&ndash;12:</strong> Submit campaign materials to funding portal for review</li>
+        <li><strong>Day 12&ndash;13:</strong> Respond to any portal compliance questions</li>
+        <li><strong>Day 14:</strong> Campaign goes live on funding portal</li>
+    </ul>
+
+    <h3>Parallel Track: Financial Statements</h3>
+    <ul class="checklist">
+        <li>Engage CPA firm (Day 1&ndash;3) &mdash; reviewed financials for a new LLC can be completed in 3&ndash;7 days</li>
+        <li>First-time Reg CF issuer: reviewed (not audited) financial statements are sufficient, even above $1.235M</li>
+        <li>New entity with no operating history: CPA reviews a balance sheet showing $0 or initial seed capital</li>
+        <li>Estimated CPA cost: $3K&ndash;$8K for reviewed financial statements</li>
+    </ul>
+</div>
+
+<!-- ============================================ -->
+<!-- PART A: ISSUER INFORMATION — 227.201(a)-(c) -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(a)</div>
+    <h2>Part A: Issuer Information</h2>
+
+    <table>
+        <tbody>
+            <tr><td style="width:35%;font-weight:600;">Legal Name</td><td>EULA Labs Ventures LLC</td></tr>
+            <tr><td style="font-weight:600;">DBA / Brand Name</td><td>EULA Labs &mdash; Empowering Universal Learning through AI</td></tr>
+            <tr><td style="font-weight:600;">State of Organization</td><td>Delaware</td></tr>
+            <tr><td style="font-weight:600;">Entity Type</td><td>Limited Liability Company</td></tr>
+            <tr><td style="font-weight:600;">Date of Organization</td><td class="atty" style="border:none;padding:0.25rem 0;margin:0;background:none;">Provide date of Delaware LLC formation</td></tr>
+            <tr><td style="font-weight:600;">Physical Address</td><td>Houston, Texas <span style="color:#991b1b;font-size:0.8rem;">[Full address to be confirmed upon Pembrook acquisition]</span></td></tr>
+            <tr><td style="font-weight:600;">Website</td><td>https://dbutler-a11y.github.io/eula-labs-ventures</td></tr>
+            <tr><td style="font-weight:600;">EDGAR CIK Number</td><td class="atty" style="border:none;padding:0.25rem 0;margin:0;background:none;">Obtain upon EDGAR registration</td></tr>
+            <tr><td style="font-weight:600;">Jurisdiction of Inc.</td><td>Delaware</td></tr>
+            <tr><td style="font-weight:600;">Tax ID (EIN)</td><td class="atty" style="border:none;padding:0.25rem 0;margin:0;background:none;">Provide upon entity formation</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ============================================ -->
+<!-- PART B: OFFICERS & DIRECTORS — 227.201(b)   -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(b)</div>
+    <h2>Part B: Officers, Directors &amp; Owners of 20%+ Voting Power</h2>
+
+    <h3>Principal Officers</h3>
+    <table>
+        <thead>
+            <tr><th>Name</th><th>Title / Role</th><th>Background</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Durayveon Butler</strong></td>
+                <td>Founder, Managing Member &amp; Creative Director</td>
+                <td>Open-source robotics and AI agent development. Creator of ARIA Research (assistive robotics), The Claw Protocol (agent coordination framework), and EULA Labs brand. Technical lead across all three pillars.</td>
+            </tr>
+            <tr>
+                <td><strong>DeAngelo Kirkland</strong> <span style="font-size:0.75rem;color:var(--color-text-muted);">(proposed)</span></td>
+                <td>Financial Steward</td>
+                <td>Analyst background in M&amp;A, Market Research, Private Equity. Previous engagement: sublease financial modeling (5-star rating). Proposed to manage fund admin relationship (Carta/Allocations), milestone-based capital releases, quarterly P&amp;L, and investor relations.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="atty">Provide full legal names, dates of birth, residential addresses, and 3-year business experience for all officers. Confirm whether DeAngelo Kirkland has formally accepted the Financial Steward role and will serve as an officer of the LLC.</div>
+
+    <h3>Beneficial Owners (&gt;20% Voting Equity)</h3>
+    <div class="atty">Identify all persons holding 20% or more of any class of voting equity. Include ownership percentages and the nature of beneficial ownership. If Durayveon Butler is the sole &gt;20% holder, confirm and provide percentage.</div>
+
+    <h3>Key Professional Relationships</h3>
+    <table>
+        <thead>
+            <tr><th>Role</th><th>Responsibility</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Securities Attorney</strong></td><td>Form C, PPM, operating agreement, Form D (if Reg D 506(c) side-by-side)</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Name firm engaged</td></tr>
+            <tr><td><strong>CPA / Accountant</strong></td><td>Reviewed financial statements (first-time issuer), K-1 distributions, annual Form C-AR</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Engage immediately</td></tr>
+            <tr><td><strong>Fund Administrator</strong></td><td>Capital calls, distributions, investor portal, compliance tracking</td><td>Carta or Allocations (to be selected)</td></tr>
+            <tr><td><strong>Real Estate Attorney</strong></td><td>Pembrook title, closing, zoning compliance</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Name firm or TBD</td></tr>
+            <tr><td><strong>Registered Agent</strong></td><td>Delaware statutory agent, annual filings</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Name agent or TBD</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ============================================ -->
+<!-- PART C: BUSINESS DESCRIPTION — 227.201(d)   -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(d)</div>
+    <h2>Part C: Description of Business &amp; Anticipated Business Plan</h2>
+
+    <div class="prefilled">All business description data is extracted from the published investor vision site and research paper.</div>
+
+    <h3>Company Overview</h3>
+    <p><strong>EULA Labs</strong> (Empowering Universal Learning through AI) is building an AI research, education, and compute center in Houston, TX &mdash; a physical campus where open-source robotics, community-governed AI agents, and developer training operate under one roof.</p>
+
+    <p>The company operates on a <strong>dual-track economic model</strong>:</p>
+    <ul style="margin:0.75rem 0 0.75rem 1.5rem;">
+        <li><strong>Track 1 &mdash; Open Source:</strong> Research, agents, documentation, education. Free to use, MIT licensed. Attracts grants, contributors, and credibility.</li>
+        <li><strong>Track 2 &mdash; Managed Services:</strong> Enterprise deployments, GPU-as-a-Service, consulting, device sales. Generates revenue distributed to contributors.</li>
+    </ul>
+
+    <h3>Three Operating Pillars</h3>
+
+    <h3>Pillar 1: EULA Properties &mdash; Hard Asset Foundation</h3>
+    <p>The Pembrook compound is a 3-unit residential property in Houston, TX being converted into an AI research campus. It serves as operational headquarters, investor collateral, and revenue-generating real estate.</p>
+    <table>
+        <thead><tr><th>Address</th><th>Value</th><th>Designation</th><th>Specs</th></tr></thead>
+        <tbody>
+            <tr><td>9132 Pembrook St</td><td style="font-family:var(--font-mono);">$440,000</td><td>Primary HQ &amp; Admin</td><td>3 bed / 4 bath</td></tr>
+            <tr><td>9134 Pembrook St</td><td style="font-family:var(--font-mono);">$385,000</td><td>Compute Lab &amp; Server Room</td><td>3 bed / 4 bath</td></tr>
+            <tr><td>9136 Pembrook St</td><td style="font-family:var(--font-mono);">$385,000</td><td>Education &amp; Co-Working</td><td>3 bed / 4 bath</td></tr>
+            <tr style="font-weight:600;background:var(--color-bg-alt);">
+                <td>Combined</td><td style="font-family:var(--font-mono);">$1,210,000</td><td>7,392 sq ft total</td><td>9 bed / 12 bath</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Revenue: $5,000&ndash;$10,000/month from co-working rental, event hosting, and AI training workshops.</p>
+
+    <h3>Pillar 2: ARIA Research &mdash; Flagship Open-Source Robotics</h3>
+    <p>Affordable AI companion robots for Parkinson&rsquo;s disease patients, built on Raspberry Pi 5 hardware. MIT licensed. Grant eligible (NIH SBIR, NSF I-Corps). Targeting 10M+ Parkinson&rsquo;s patients worldwide.</p>
+    <table>
+        <thead><tr><th>Product</th><th>Price</th><th>Function</th></tr></thead>
+        <tbody>
+            <tr><td>Frame</td><td style="font-family:var(--font-mono);">$220</td><td>Mobility assistance &amp; gait cueing</td></tr>
+            <tr><td>Bloom</td><td style="font-family:var(--font-mono);">$280</td><td>Companion &amp; medication reminders</td></tr>
+            <tr><td>Guide</td><td style="font-family:var(--font-mono);">$380</td><td>Navigation &amp; advanced cueing</td></tr>
+            <tr><td>Rover</td><td style="font-family:var(--font-mono);">$430</td><td>Mobile platform &amp; device deployment</td></tr>
+        </tbody>
+    </table>
+    <p>Live site: <a href="https://dbutler-a11y.github.io/aria-research/" target="_blank">dbutler-a11y.github.io/aria-research</a></p>
+
+    <h3>Pillar 3: The Claw Protocol &mdash; Community AI Infrastructure</h3>
+    <p>Community-led AI agent coordination framework with OpenClaw browser automation. Backed by the published research paper <em>&ldquo;Coordinated Intelligence Systems.&rdquo;</em> 5-tier contribution scoring governs resource allocation and governance weight.</p>
+    <p>Revenue model: Agent-as-a-Service, GPU-as-a-Service, AI consulting.</p>
+    <p>Research paper: <a href="https://github.com/moltbot47/open-claw/blob/main/paper/coordinated-intelligence-systems.md" target="_blank">Coordinated Intelligence Systems</a></p>
+
+    <h3>Number of Employees</h3>
+    <div class="atty">State current employee count. If zero, state &ldquo;The company currently has no employees. The Founder operates as the sole managing member. The company intends to hire 3&ndash;5 engineers within 12 months of funding.&rdquo;</div>
+</div>
+
+<!-- ============================================ -->
+<!-- PART D: USE OF PROCEEDS — 227.201(i)        -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(i)</div>
+    <h2>Part D: Use of Proceeds</h2>
+
+    <div class="prefilled">All allocations are from the published investor vision document.</div>
+
+    <h3>Tranche 1: Real Estate &mdash; $1,000,000</h3>
+    <table>
+        <thead><tr><th>Category</th><th>Amount</th><th>Purpose</th></tr></thead>
+        <tbody>
+            <tr><td>Property Acquisition</td><td style="font-family:var(--font-mono);">$850K&ndash;$900K</td><td>Purchase Pembrook compound (3 units, Houston TX)</td></tr>
+            <tr><td>Renovation &amp; Buildout</td><td style="font-family:var(--font-mono);">$50K&ndash;$75K</td><td>Compute room, classroom, lab conversion</td></tr>
+            <tr><td>Closing &amp; Reserve</td><td style="font-family:var(--font-mono);">$50K&ndash;$75K</td><td>Insurance, property tax, legal, title</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Tranche 2: Operations &amp; Infrastructure &mdash; $1,000,000</h3>
+    <table>
+        <thead><tr><th>Category</th><th>Amount</th><th>Purpose</th></tr></thead>
+        <tbody>
+            <tr><td>Compute Hardware</td><td style="font-family:var(--font-mono);">$300K&ndash;$400K</td><td>GPUs, servers, networking, racks</td></tr>
+            <tr><td>Developer Hiring</td><td style="font-family:var(--font-mono);">$200K&ndash;$300K</td><td>3&ndash;5 engineers, 12-month runway</td></tr>
+            <tr><td>ARIA Manufacturing</td><td style="font-family:var(--font-mono);">$50K&ndash;$75K</td><td>First production batch, testing</td></tr>
+            <tr><td>Legal &amp; Compliance</td><td style="font-family:var(--font-mono);">$50K&ndash;$75K</td><td>Entity formation, SEC filings, attorney</td></tr>
+            <tr><td>Operating Reserve</td><td style="font-family:var(--font-mono);">$100K&ndash;$150K</td><td>12-month runway buffer</td></tr>
+            <tr><td>Marketing &amp; Community</td><td style="font-family:var(--font-mono);">$50K&ndash;$75K</td><td>Campaign, events, outreach</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Net Proceeds After Platform Fees</h3>
+    <table>
+        <tbody>
+            <tr><td style="width:50%;">Gross Offering Amount</td><td style="font-family:var(--font-mono);font-weight:600;">$2,000,000</td></tr>
+            <tr><td>Estimated Platform Fees (6&ndash;8%)</td><td style="font-family:var(--font-mono);color:var(--color-danger);">($120,000&ndash;$160,000)</td></tr>
+            <tr><td>Estimated Legal &amp; CPA Review Costs</td><td style="font-family:var(--font-mono);color:var(--color-danger);">($8,000&ndash;$15,000)</td></tr>
+            <tr style="background:var(--color-bg-alt);font-weight:600;"><td>Estimated Net Proceeds</td><td style="font-family:var(--font-mono);color:var(--color-success);">~$1,700,000&ndash;$1,800,000</td></tr>
+        </tbody>
+    </table>
+
+    <div class="atty">Finalize exact allocation amounts and confirm whether ranges are acceptable to SEC or if fixed amounts are required. Specify what happens if offering is oversubscribed.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- PART E: OWNERSHIP & CAPITAL — 227.201(m)    -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(m)</div>
+    <h2>Part E: Ownership &amp; Capital Structure</h2>
+
+    <h3>Entity Hierarchy</h3>
+    <div class="entity-tree">
+EULA Labs Ventures LLC (Master Fund &mdash; Delaware)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; ELV Real Estate SPV LLC &rarr; Pembrook compound<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; ELV Compute &amp; AI SPV LLC &rarr; GPUs, servers, agent infrastructure<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9500;&#9472;&#9472; ELV Research SPV LLC &rarr; ARIA devices, R&amp;D, grants<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#9492;&#9472;&#9472; ELV Management LLC &rarr; Management fees, carried interest
+    </div>
+
+    <h3>Securities Being Offered</h3>
+    <table>
+        <tbody>
+            <tr><td style="width:40%;font-weight:600;">Type of Security</td><td>LLC Membership Interests</td></tr>
+            <tr><td style="font-weight:600;">Transferability</td><td>Non-transferable. Earned through contribution or purchased through offering only.</td></tr>
+            <tr><td style="font-weight:600;">Voting Rights</td><td>Contribution-weighted governance (5-tier system). 5% weight ceiling per member.</td></tr>
+            <tr><td style="font-weight:600;">Distribution Rights</td><td>Pro-rata share of 40% contributor revenue allocation.</td></tr>
+            <tr><td style="font-weight:600;">Liquidation Rights</td><td>Pro-rata distribution upon dissolution after creditor satisfaction.</td></tr>
+            <tr><td style="font-weight:600;">Anti-Dilution</td><td>Contribution decay mechanism (Tier 1 at half-speed) maintains relative positioning.</td></tr>
+        </tbody>
+    </table>
+
+    <div class="atty">Provide complete capitalization table. Specify: (1) total authorized membership units, (2) units outstanding before offering, (3) units being offered, (4) price per unit, (5) post-offering ownership percentages, (6) any rights, preferences, or privileges of different classes of membership interests.</div>
+
+    <h3>Investor Protections</h3>
+    <ul style="margin:0.75rem 0 0 1.5rem;">
+        <li>Hard asset backing (Pembrook compound, $1.21M appraised value)</li>
+        <li>Separate SPVs per pillar (liability isolation)</li>
+        <li>Non-transferable membership interests (no speculation)</li>
+        <li>Milestone-based capital deployment</li>
+        <li>Transparent quarterly reporting via fund admin portal</li>
+        <li>5% governance weight ceiling (anti-capture architecture)</li>
+        <li>Mandatory leadership rotation every 6&ndash;12 months</li>
+        <li>Fork rights (open-source assets can be forked if governance is captured)</li>
+    </ul>
+</div>
+
+<!-- ============================================ -->
+<!-- PART F: FINANCIAL CONDITION — 227.201(s)    -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(s)</div>
+    <h2>Part F: Financial Condition &amp; Results of Operations</h2>
+
+    <div class="atty">Provide narrative discussion of financial condition, including liquidity, capital resources, and historical results of operations (if any). For a newly formed entity, describe the basis for financial projections and assumptions.</div>
+
+    <h3>Projected Revenue Streams (Year 1)</h3>
+    <table>
+        <thead><tr><th>Revenue Center</th><th>Timeline</th><th>Monthly Revenue</th></tr></thead>
+        <tbody>
+            <tr><td>Agent-as-a-Service (OpenClaw)</td><td>Weeks 1&ndash;4</td><td style="font-family:var(--font-mono);">$2K&ndash;$5K</td></tr>
+            <tr><td>ARIA Device Pre-Orders &amp; Grants</td><td>Weeks 2&ndash;6</td><td style="font-family:var(--font-mono);">$5K&ndash;$15K first batch</td></tr>
+            <tr><td>AI Consulting (EULA Labs)</td><td>Weeks 4&ndash;8</td><td style="font-family:var(--font-mono);">$5K&ndash;$10K</td></tr>
+            <tr><td>GPU-as-a-Service</td><td>Months 2&ndash;4</td><td style="font-family:var(--font-mono);">$3K&ndash;$8K</td></tr>
+            <tr><td>Pembrook Rental &amp; Events</td><td>Months 3&ndash;6</td><td style="font-family:var(--font-mono);">$5K&ndash;$10K</td></tr>
+            <tr style="background:var(--color-bg-alt);font-weight:600;"><td>Year 1 Target (Combined)</td><td colspan="2" style="font-family:var(--font-mono);color:var(--color-success);">$300,000&ndash;$600,000</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Revenue Allocation Model</h3>
+    <table>
+        <thead><tr><th>Allocation</th><th>%</th><th>Purpose</th></tr></thead>
+        <tbody>
+            <tr><td>Contributors</td><td style="font-family:var(--font-mono);">40%</td><td>Revenue sharing to community members by contribution weight</td></tr>
+            <tr><td>Compute Expansion</td><td style="font-family:var(--font-mono);">25%</td><td>Infrastructure maintenance and growth</td></tr>
+            <tr><td>Operations</td><td style="font-family:var(--font-mono);">15%</td><td>General overhead, facilities, utilities</td></tr>
+            <tr><td>Reserve</td><td style="font-family:var(--font-mono);">10%</td><td>Emergency fund and contingency</td></tr>
+            <tr><td>Education</td><td style="font-family:var(--font-mono);">10%</td><td>Training programs, documentation, workshops</td></tr>
+        </tbody>
+    </table>
+    <p style="font-size:0.85rem;color:var(--color-text-muted);"><em>Source: &ldquo;Coordinated Intelligence Systems&rdquo; published research paper, Section 5.</em></p>
+</div>
+
+<!-- ============================================ -->
+<!-- PART G: RISK FACTORS — 227.201(f)           -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(f)</div>
+    <h2>Part G: Risk Factors</h2>
+
+    <p>An investment in EULA Labs Ventures LLC involves a high degree of risk. You should carefully consider the following risks before making an investment decision.</p>
+
+    <div class="risk-item">
+        <h4>1. Early-Stage Company Risk</h4>
+        <p>The Company is a newly formed entity with no operating history. There can be no assurance that the Company will achieve profitability or that any of its business plans will be successfully implemented.</p>
+    </div>
+
+    <div class="risk-item">
+        <h4>2. Real Estate Acquisition Risk</h4>
+        <p>The Pembrook compound acquisition is subject to title issues, zoning challenges, appraisal complications, and Houston real estate market conditions. Renovation costs may exceed estimates. The compound has not yet been acquired.</p>
+    </div>
+
+    <div class="risk-item">
+        <h4>3. Technology Development Risk</h4>
+        <p>ARIA robotic devices are in development. Manufacturing timelines are uncertain. GPU hardware depreciates rapidly. AI agent technology is evolving quickly and competitive advantages may be short-lived.</p>
+    </div>
+
+    <div class="risk-item">
+        <h4>4. Revenue Projection Risk</h4>
+        <p>Revenue projections are forward-looking estimates and not guarantees. Agent-as-a-Service adoption is unproven. ARIA device demand has not been validated at scale. Consulting engagements depend on client acquisition.</p>
+    </div>
+
+    <div class="risk-item">
+        <h4>5. Regulatory &amp; Compliance Risk</h4>
+        <p>Securities regulations may change. The LLC membership interest structure and contribution-weighted governance system are novel. Medical device liability may apply to ARIA products if they are deemed health devices. Data privacy regulations (GDPR, CCPA) apply to agent operations.</p>
+    </div>
+
+    <div class="risk-item">
+        <h4>6. Competition Risk</h4>
+        <p>Larger companies (Google, Microsoft, Amazon) provide GPU cloud services at scale. Established robotics firms may enter the assistive device market. Open-source AI agent frameworks face competition from proprietary LLM platforms.</p>
+    </div>
+
+    <div class="risk-item">
+        <h4>7. Key Person Risk</h4>
+        <p>The Company is substantially dependent on Durayveon Butler as Founder, Managing Member, and technical lead. Loss of the Founder would materially and adversely affect the Company&rsquo;s business and prospects.</p>
+    </div>
+
+    <div class="risk-item">
+        <h4>8. Liquidity Risk</h4>
+        <p>LLC membership interests are non-transferable. There is no secondary market for these securities. Investors should expect to hold their investment indefinitely and may never receive a return on their investment.</p>
+    </div>
+
+    <div class="risk-item">
+        <h4>9. Multi-Pillar Execution Risk</h4>
+        <p>The Company operates across three distinct business areas (real estate, robotics, AI infrastructure) simultaneously. Managing multiple SPVs and revenue streams increases operational complexity and execution risk.</p>
+    </div>
+
+    <div class="risk-item">
+        <h4>10. Funding Risk</h4>
+        <p>If the offering does not reach the target amount of $2,000,000, all funds will be returned to investors and the Company may be unable to execute its business plan. Even if the target is met, net proceeds after platform fees (6&ndash;8%) and costs may be materially lower than the gross offering amount.</p>
+    </div>
+
+    <div class="atty">Review all risk factors for completeness and legal sufficiency. Add any additional material risks specific to the LLC structure, Delaware law, real estate financing, or the regulatory environment. Risk factors must be specific to this offering, not generic boilerplate.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- PART H: OFFERING TERMS — 227.201(g)-(l)     -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(g)&ndash;(l)</div>
+    <h2>Part H: Offering Terms</h2>
+
+    <table>
+        <tbody>
+            <tr><td style="width:40%;font-weight:600;">Target Offering Amount</td><td style="font-family:var(--font-mono);font-weight:600;">$2,000,000</td></tr>
+            <tr><td style="font-weight:600;">Maximum Offering Amount</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Specify if accepting oversubscriptions (Reg CF max: $5M/year)</td></tr>
+            <tr><td style="font-weight:600;">Offering Deadline</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Specify campaign end date</td></tr>
+            <tr><td style="font-weight:600;">Type of Securities</td><td>LLC Membership Interests (non-transferable)</td></tr>
+            <tr><td style="font-weight:600;">Price Per Unit</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Determine unit price and valuation methodology</td></tr>
+            <tr><td style="font-weight:600;">Minimum Investment</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Specify minimum commitment amount</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Investor Limits (Reg CF &mdash; 17 CFR &sect; 227.100(a)(2))</h3>
+    <table>
+        <thead><tr><th>Investor Type</th><th>Annual Investment Limit</th></tr></thead>
+        <tbody>
+            <tr><td>Accredited Investors</td><td>No limit</td></tr>
+            <tr><td>Non-accredited (income or net worth &lt; $124K)</td><td>Greater of $2,500 or 5% of lesser of income/net worth</td></tr>
+            <tr><td>Non-accredited (both income and net worth &ge; $124K)</td><td>Up to 10% of lesser of income/net worth, max $124K/year across all Reg CF</td></tr>
+        </tbody>
+    </table>
+
+    <h3>If Target Not Met</h3>
+    <p>&ldquo;If the sum of investment commitments does not equal or exceed <strong>$2,000,000</strong> by the offering deadline, no securities will be sold in this offering, investment commitments will be cancelled, and committed funds will be returned to investors.&rdquo;</p>
+
+    <h3>Cancellation Rights</h3>
+    <p>Investors may cancel their investment commitment for any reason until 48 hours prior to the offering deadline. The intermediary will notify investors if there is a material change to the offering; in such case, commitments will be cancelled unless investors affirmatively reconfirm within five business days.</p>
+
+    <div class="atty">Confirm pricing methodology (pre-money valuation, price per unit, total units). Specify oversubscription policy and allocation method. Confirm early closing provisions if applicable.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- PART I: INTERMEDIARY — 227.201(n)-(o)       -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(n)&ndash;(o)</div>
+    <h2>Part I: Intermediary Information</h2>
+
+    <h3>Platform Options Under Consideration</h3>
+    <table>
+        <thead><tr><th>Platform</th><th>Fee Structure</th><th>Strengths</th></tr></thead>
+        <tbody>
+            <tr><td><strong>Wefunder</strong></td><td style="font-family:var(--font-mono);">7.5%</td><td>Lowest cost, strong startup community</td></tr>
+            <tr><td><strong>Republic</strong></td><td style="font-family:var(--font-mono);">6% + 2% equity</td><td>Curated brand, founder AMAs</td></tr>
+            <tr><td><strong>StartEngine</strong></td><td style="font-family:var(--font-mono);">7&ndash;12%</td><td>Largest user base (1.7M investors)</td></tr>
+        </tbody>
+    </table>
+
+    <div class="atty">Select intermediary and provide: (1) Full legal name, (2) SEC file number, (3) CRD number, (4) Commission/fee structure including any equity or warrants taken by platform, (5) Any financial interest in the issuer beyond standard fees.</div>
+
+    <h3>Accredited Investors</h3>
+    <p>Accredited investors interested in participating beyond Reg CF limits may contact the Company directly at <a href="mailto:durayveonbutler@gmail.com">durayveonbutler@gmail.com</a> to discuss investment opportunities.</p>
+</div>
+
+<!-- ============================================ -->
+<!-- PART J: RELATED-PARTY — 227.201(r)          -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(r)</div>
+    <h2>Part J: Related-Party Transactions</h2>
+
+    <p>Disclosure required for any transaction since the beginning of the issuer&rsquo;s last fiscal year in which the issuer was a participant, the amount involved exceeds 5% of the aggregate amount of capital raised under Section 4(a)(6) in the prior 12-month period, and a related person had a direct or indirect material interest.</p>
+
+    <h3>Identified Related-Party Interest</h3>
+    <table>
+        <tbody>
+            <tr><td style="width:35%;font-weight:600;">Person</td><td>DeAngelo Kirkland (proposed Financial Steward)</td></tr>
+            <tr><td style="font-weight:600;">Nature of Interest</td><td>Proposed investment of $50,000&ndash;$100,000 as equity capital. Half deployed immediately to agent operations and compute, half reserved toward Pembrook acquisition closing costs.</td></tr>
+            <tr><td style="font-weight:600;">Relationship</td><td>Proposed officer (Financial Steward) of the LLC. Previous contractor relationship (sublease financial modeling).</td></tr>
+            <tr><td style="font-weight:600;">Compensation</td><td>Tier 1 contributor status (5x multiplier), pro-rata revenue share, governance weight, negotiated equity stake, half-speed contribution decay.</td></tr>
+        </tbody>
+    </table>
+
+    <div class="atty">Confirm whether DeAngelo Kirkland&rsquo;s investment constitutes a related-party transaction (depends on whether he is an officer at time of investment). Disclose any other transactions &gt;5% of capital raised involving officers, directors, or &gt;20% beneficial owners.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- PART K: FINANCIAL STATEMENTS — 227.201(t)   -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(t)</div>
+    <h2>Part K: Financial Statements</h2>
+
+    <h3>Financial Statement Requirement</h3>
+    <table>
+        <tbody>
+            <tr><td style="width:40%;font-weight:600;">Offering Amount</td><td style="font-family:var(--font-mono);">$2,000,000</td></tr>
+            <tr><td style="font-weight:600;">Default Threshold (&gt;$1.235M)</td><td>Audited financial statements</td></tr>
+            <tr><td style="font-weight:600;">First-Time Issuer Exception</td><td style="font-weight:600;color:var(--color-success);">Reviewed Financial Statements Sufficient</td></tr>
+            <tr><td style="font-weight:600;">Rule</td><td>17 CFR &sect; 227.201(t)(3) &mdash; first-time Reg CF issuer</td></tr>
+            <tr><td style="font-weight:600;">Standard</td><td>U.S. GAAP</td></tr>
+            <tr><td style="font-weight:600;">Currency</td><td>Current as of within 180 days of Form C filing</td></tr>
+            <tr><td style="font-weight:600;">Estimated Cost</td><td style="font-family:var(--font-mono);">$3,000&ndash;$8,000 (reviewed)</td></tr>
+            <tr><td style="font-weight:600;">Estimated Timeline</td><td style="font-family:var(--font-mono);">3&ndash;7 days for new entity</td></tr>
+        </tbody>
+    </table>
+
+    <h3>What &ldquo;Reviewed Financials&rdquo; Means for a New Startup</h3>
+    <p>For a newly formed LLC with no operating history, the CPA review consists of:</p>
+    <ul style="margin:0.5rem 0 0 1.5rem;">
+        <li>Balance sheet showing $0 or initial seed capital</li>
+        <li>Statement that no operations have occurred</li>
+        <li>CPA&rsquo;s review opinion letter (limited assurance)</li>
+        <li>Notes to financial statements (formation date, entity purpose)</li>
+    </ul>
+    <p style="margin-top:0.75rem;">This is materially simpler and cheaper than a full audit. A competent CPA can complete this in under a week.</p>
+
+    <div class="atty">Confirm first-time issuer status under Rule 227.201(t)(3). Engage CPA firm to produce reviewed financial statements. For subsequent annual reports (Form C-AR), audited financials will be required if offering exceeds $1.235M threshold again.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- PART L: ONGOING REPORTING — 227.201(w)-(x)  -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(w)&ndash;(x)</div>
+    <h2>Part L: Ongoing Reporting Obligations</h2>
+
+    <h3>Annual Report (Form C-AR)</h3>
+    <table>
+        <tbody>
+            <tr><td style="width:40%;font-weight:600;">Filing Requirement</td><td>Form C-AR filed annually with the SEC</td></tr>
+            <tr><td style="font-weight:600;">Deadline</td><td>Within 120 days of fiscal year end</td></tr>
+            <tr><td style="font-weight:600;">Contents</td><td>Updated financial statements, business updates, use of proceeds update</td></tr>
+            <tr><td style="font-weight:600;">Availability</td><td>SEC EDGAR database, company website, fund admin investor portal</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Termination of Reporting</h3>
+    <p>Ongoing reporting obligations terminate when the issuer: (1) has filed at least one annual report and has fewer than 300 holders of record, (2) has filed at least three annual reports and has total assets not exceeding $10 million, (3) repurchases all outstanding securities, or (4) dissolves.</p>
+
+    <div class="atty">Confirm fiscal year end date. Determine whether quarterly investor reports (beyond SEC requirements) will be provided through fund admin portal as stated in investor materials.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- PART M: GOVERNANCE — 227.201(y)             -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(y) &mdash; Material Information</div>
+    <h2>Part M: Governance &amp; Contribution Scoring</h2>
+
+    <div class="prefilled">Governance system is documented in the published research paper &ldquo;Coordinated Intelligence Systems&rdquo; and the investor vision site.</div>
+
+    <h3>5-Tier Contribution Scoring System</h3>
+    <table>
+        <thead><tr><th>Tier</th><th>Contribution Type</th><th>Multiplier</th><th>Examples</th></tr></thead>
+        <tbody>
+            <tr><td style="font-family:var(--font-mono);">1</td><td>Infrastructure Investment</td><td style="font-family:var(--font-mono);font-weight:600;">5x</td><td>Capital investment, GPU purchases, property funding</td></tr>
+            <tr><td style="font-family:var(--font-mono);">2</td><td>Compute Donation</td><td style="font-family:var(--font-mono);font-weight:600;">3x</td><td>Donated GPU/CPU cycles, storage, bandwidth</td></tr>
+            <tr><td style="font-family:var(--font-mono);">3</td><td>Agents &amp; Code</td><td style="font-family:var(--font-mono);font-weight:600;">2x</td><td>AI agents, software tools, integrations</td></tr>
+            <tr><td style="font-family:var(--font-mono);">4</td><td>Research &amp; Knowledge</td><td style="font-family:var(--font-mono);font-weight:600;">1.5x</td><td>Papers, tutorials, documentation</td></tr>
+            <tr><td style="font-family:var(--font-mono);">5</td><td>Community &amp; Governance</td><td style="font-family:var(--font-mono);font-weight:600;">1x</td><td>Moderation, events, mentorship</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Tokens = LLC Membership Interests</h3>
+    <p>Contribution scores are tracked as non-transferable LLC membership interests that represent both governance weight and revenue share. These are structured as legal membership units under Delaware LLC law &mdash; not cryptocurrency tokens. They are earned through verified contribution, not purchased on a secondary market.</p>
+
+    <h3>Anti-Capture Safeguards</h3>
+    <ul style="margin:0.5rem 0 0 1.5rem;">
+        <li><strong>5% weight ceiling:</strong> No single member can exceed 5% of total governance weight</li>
+        <li><strong>Quadratic scaling:</strong> Influence grows sub-linearly to amplify smaller contributors</li>
+        <li><strong>Leadership rotation:</strong> Mandatory rotation every 6&ndash;12 months</li>
+        <li><strong>Fork rights:</strong> If governance is captured, all open-source assets can be forked by the community</li>
+        <li><strong>Contribution decay:</strong> Scores decay over time (Tier 1 at half speed) to maintain active participation</li>
+    </ul>
+
+    <div class="atty">Review governance provisions for compliance with Delaware LLC Act. Confirm that the 5-tier scoring system and non-transferability provisions are properly documented in the Operating Agreement. Ensure that the &ldquo;token&rdquo; language is clearly distinguished from cryptocurrency in all SEC filings.</div>
+</div>
+
+<!-- ============================================ -->
+<!-- ADDITIONAL DISCLOSURES                       -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">17 CFR &sect; 227.201(p)&ndash;(q), (u)</div>
+    <h2>Additional Required Disclosures</h2>
+
+    <h3>Material Indebtedness &mdash; &sect; 227.201(p)</h3>
+    <div class="atty">Disclose all material terms of any indebtedness of the issuer, including amount, interest rate, maturity date, and any other material terms. If no indebtedness exists, state &ldquo;The Company has no outstanding indebtedness.&rdquo;</div>
+
+    <h3>Prior Exempt Offerings (Within 3 Years) &mdash; &sect; 227.201(q)</h3>
+    <div class="atty">Disclose any exempt offerings conducted within the past three years, including: date of offering, exemption relied upon, type of securities offered, amount sold, and use of proceeds. If none, state &ldquo;The Company has not conducted any prior exempt offerings.&rdquo;</div>
+
+    <h3>Disqualification Matters &mdash; &sect; 227.201(u)</h3>
+    <div class="atty">Certify that no covered person is subject to disqualification under Rule 503(a) of Regulation Crowdfunding. Covered persons include the issuer, directors, officers, &gt;20% beneficial owners, promoters, and the intermediary. Disclose any matters that would have triggered disqualification but occurred before May 16, 2016.</div>
+
+    <h3>Compliance History &mdash; &sect; 227.201(x)</h3>
+    <div class="atty">Confirm whether the issuer has previously failed to comply with ongoing reporting requirements under Regulation Crowdfunding. For first-time issuers, state &ldquo;Not applicable. This is the Company&rsquo;s first offering under Regulation Crowdfunding.&rdquo;</div>
+</div>
+
+<!-- ============================================ -->
+<!-- APPENDIX: SUPPORTING DOCUMENTS              -->
+<!-- ============================================ -->
+<div class="section">
+    <div class="section-label">Appendix</div>
+    <h2>Supporting Documents Checklist</h2>
+
+    <p>The following documents must accompany or support the Form C filing:</p>
+
+    <table>
+        <thead><tr><th>Document</th><th>Status</th><th>Responsible Party</th></tr></thead>
+        <tbody>
+            <tr><td>Delaware LLC Certificate of Formation</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">File with DE Secretary of State</td><td>Attorney</td></tr>
+            <tr><td>Operating Agreement (with governance provisions)</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Draft required</td><td>Attorney</td></tr>
+            <tr><td>Subscription Agreement</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Draft required</td><td>Attorney</td></tr>
+            <tr><td>Reviewed Financial Statements (first-time issuer)</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Engage CPA firm &mdash; 3&ndash;7 days</td><td>CPA</td></tr>
+            <tr><td>EIN Confirmation Letter (IRS)</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Apply upon formation</td><td>Attorney / Founder</td></tr>
+            <tr><td>EDGAR Registration &amp; CIK Number</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Register on EDGAR</td><td>Attorney</td></tr>
+            <tr><td>Investor Vision Site</td><td style="color:var(--color-success);font-weight:600;">Complete</td><td>Founder</td></tr>
+            <tr><td>Research Paper (Coordinated Intelligence Systems)</td><td style="color:var(--color-success);font-weight:600;">Published</td><td>Founder</td></tr>
+            <tr><td>ARIA Research Site &amp; Product Documentation</td><td style="color:var(--color-success);font-weight:600;">Live</td><td>Founder</td></tr>
+            <tr><td>Pembrook Property Appraisal</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Order appraisal</td><td>Real Estate Attorney</td></tr>
+            <tr><td>Funding Portal Application</td><td class="atty" style="border:none;padding:0.75rem 1rem;margin:0;background:none;">Submit to selected platform</td><td>Attorney / Founder</td></tr>
+        </tbody>
+    </table>
+</div>
+
+</div><!-- end container -->
+
+<!-- FOOTER -->
+<div class="doc-footer">
+    <div class="container">
+        <p><strong>EULA Labs Ventures LLC</strong> &mdash; Form C Draft (Pre-Attorney Review)</p>
+        <p>Prepared from published investor materials. All data subject to attorney review and verification.</p>
+        <p>This document is not a filed Form C and has not been reviewed by the SEC.</p>
+        <p style="margin-top:0.75rem;">&copy; 2026 EULA Labs &mdash; Equitable Unified Labs for Advancement. Houston, TX.</p>
+    </div>
+</div>
+
+</body>
+</html>
