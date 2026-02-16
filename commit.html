@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EULA Labs — Founding Steward Commitment</title>
+    <meta name="description" content="Founding Steward commitment process for EULA Labs Ventures.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,500;8..60,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --color-primary: #1a365d;
+            --color-secondary: #2c5282;
+            --color-accent: #3182ce;
+            --color-accent-light: #63b3ed;
+            --color-text: #1a202c;
+            --color-text-secondary: #4a5568;
+            --color-text-muted: #718096;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f7fafc;
+            --color-border: #e2e8f0;
+            --color-success: #38a169;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+        }
+
+        html { font-size: 17px; scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text);
+            line-height: 1.7;
+            background: var(--color-bg-alt);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--font-serif); color: var(--color-primary); font-weight: 500; }
+        p { color: var(--color-text-secondary); margin-bottom: 1rem; }
+        a { color: var(--color-accent); text-decoration: none; }
+
+        .container { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* HEADER */
+        .page-header {
+            background: var(--color-primary);
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .page-header h1 { color: white; font-size: 1.5rem; margin-bottom: 0.25rem; }
+        .page-header p { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin: 0; }
+        .page-header a { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
+        .page-header a:hover { color: white; }
+
+        /* STEPPER */
+        .stepper {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            padding: 2rem 0 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .step-indicator.active { color: var(--color-primary); }
+        .step-indicator.completed { color: var(--color-success); }
+        .step-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--color-border);
+            color: var(--color-text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .step-indicator.active .step-num { background: var(--color-primary); color: white; }
+        .step-indicator.completed .step-num { background: var(--color-success); color: white; }
+        .step-connector {
+            width: 40px;
+            height: 2px;
+            background: var(--color-border);
+            align-self: center;
+            margin: 0 0.5rem;
+            transition: background 0.2s;
+        }
+        .step-connector.completed { background: var(--color-success); }
+
+        /* CARD */
+        .step-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 1rem 0 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+        .step-card h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .step-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; margin-top: 1.5rem; }
+
+        /* AMOUNT DISPLAY */
+        .amount-display {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #ebf8ff 0%, #f0fff4 100%);
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+        .amount-display .label { font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 0.5rem; }
+        .amount-display .amount {
+            font-family: var(--font-mono);
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+        .amount-edit {
+            display: inline-block;
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--color-accent);
+            cursor: pointer;
+            border-bottom: 1px dashed var(--color-accent);
+        }
+
+        /* TERM SHEET TABLE */
+        table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+        th { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 2px solid var(--color-border); font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-text-muted); }
+        td { padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--color-border); color: var(--color-text-secondary); }
+        td strong { color: var(--color-text); }
+        td:first-child { font-weight: 500; color: var(--color-text); white-space: nowrap; }
+
+        /* CALLOUT */
+        .callout {
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-left: 3px solid var(--color-accent);
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1.25rem 0;
+            font-size: 0.9rem;
+        }
+        .callout p { margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .callout p:last-child { margin-bottom: 0; }
+        .callout.green { border-left-color: var(--color-success); }
+        .callout.amber { border-left-color: #d69e2e; }
+
+        /* LOI */
+        .loi-document {
+            background: white;
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        .loi-document::before {
+            content: 'NON-BINDING LETTER OF INTENT';
+            position: absolute;
+            top: -12px;
+            left: 2rem;
+            background: white;
+            padding: 0 0.75rem;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            letter-spacing: 0.08em;
+        }
+        .loi-document h4 { font-size: 1rem; margin-bottom: 1rem; text-align: center; }
+        .loi-document p { font-size: 0.85rem; line-height: 1.8; }
+
+        .signature-block {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-border);
+        }
+        .sig-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .sig-field label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--color-text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .sig-field input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .sig-field input:focus { border-color: var(--color-accent); }
+        .sig-field input.signature-style {
+            font-family: 'Source Serif 4', Georgia, serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--color-primary);
+        }
+        .sig-field .static-value {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--color-text);
+            padding: 0.75rem 0;
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        /* WIRE INFO */
+        .wire-card {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+        .wire-card h4 { color: var(--color-accent-light); font-size: 1rem; margin-bottom: 1rem; }
+        .wire-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+        .wire-row:last-child { border-bottom: none; }
+        .wire-label { color: #94a3b8; }
+        .wire-value { font-family: var(--font-mono); color: white; font-weight: 500; user-select: all; }
+        .wire-copy {
+            display: inline-block;
+            margin-left: 0.5rem;
+            font-size: 0.7rem;
+            color: var(--color-accent-light);
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .wire-copy:hover { opacity: 1; }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font-sans);
+        }
+        .btn:hover { text-decoration: none; }
+        .btn-primary { background: var(--color-primary); color: white; }
+        .btn-primary:hover { background: var(--color-secondary); transform: translateY(-1px); }
+        .btn-success { background: var(--color-success); color: white; }
+        .btn-success:hover { background: #2f855a; transform: translateY(-1px); }
+        .btn-outline { background: transparent; color: var(--color-text-secondary); border: 1px solid var(--color-border); }
+        .btn-outline:hover { border-color: var(--color-primary); color: var(--color-primary); }
+        .btn-block { display: flex; width: 100%; justify-content: center; font-size: 1.05rem; padding: 1rem; }
+
+        .btn-group { display: flex; gap: 1rem; margin-top: 1.5rem; }
+
+        /* CHECKBOX */
+        .checkbox-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+        .checkbox-row input[type="checkbox"] {
+            margin-top: 0.25rem;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--color-primary);
+            flex-shrink: 0;
+        }
+
+        /* CONFIRMATION */
+        .confirmation {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        .confirmation .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #f0fff4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+        }
+        .confirmation h2 { margin-bottom: 0.75rem; }
+        .confirmation p { max-width: 480px; margin: 0 auto 1rem; }
+
+        /* HIDDEN */
+        .hidden { display: none; }
+
+        /* TIMELINE MINI */
+        .mini-timeline { list-style: none; margin: 1rem 0; }
+        .mini-timeline li {
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            position: relative;
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+            border-left: 2px solid var(--color-border);
+        }
+        .mini-timeline li::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 0.75rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-accent);
+        }
+        .mini-timeline li strong { color: var(--color-text); }
+
+        /* FOOTER */
+        .page-footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+        .page-footer a { color: var(--color-text-muted); }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .step-card { padding: 1.5rem; }
+            .loi-document { padding: 1.5rem; }
+            .sig-row { grid-template-columns: 1fr; gap: 1rem; }
+            .wire-card { padding: 1.5rem; }
+            .stepper { gap: 0; }
+            .step-indicator span:not(.step-num) { display: none; }
+            .btn-group { flex-direction: column; }
+            .amount-display .amount { font-size: 2.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="page-header">
+    <h1>EULA Labs &mdash; Founding Steward Commitment</h1>
+    <p>Secure your position. Build the future.</p>
+    <a href="index.html">&larr; Back to full proposal</a>
+</div>
+
+<!-- STEPPER -->
+<div class="container">
+    <div class="stepper">
+        <div class="step-indicator active" id="step-ind-1" onclick="goToStep(1)">
+            <span class="step-num">1</span>
+            <span>Confirm</span>
+        </div>
+        <div class="step-connector" id="conn-1"></div>
+        <div class="step-indicator" id="step-ind-2" onclick="goToStep(2)">
+            <span class="step-num">2</span>
+            <span>Review</span>
+        </div>
+        <div class="step-connector" id="conn-2"></div>
+        <div class="step-indicator" id="step-ind-3" onclick="goToStep(3)">
+            <span class="step-num">3</span>
+            <span>Sign</span>
+        </div>
+        <div class="step-connector" id="conn-3"></div>
+        <div class="step-indicator" id="step-ind-4" onclick="goToStep(4)">
+            <span class="step-num">4</span>
+            <span>Fund</span>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- STEP 1: CONFIRM AMOUNT -->
+<!-- ============================================ -->
+<div class="container" id="step-1">
+    <div class="step-card">
+        <h2>Confirm Your Investment</h2>
+        <p>Verify the amount below. This will carry through your Letter of Intent and wire instructions.</p>
+
+        <div class="amount-display">
+            <div class="label">Founding Steward Investment</div>
+            <div class="amount" id="display-amount">$75,000</div>
+            <div class="amount-edit" onclick="toggleAmountEdit()">Change amount</div>
+        </div>
+
+        <div id="amount-editor" class="hidden" style="text-align:center;margin:1.5rem 0;">
+            <div style="display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem;">
+                <button onclick="setAmount(50000)" class="btn btn-outline amt-btn">$50,000</button>
+                <button onclick="setAmount(75000)" class="btn btn-outline amt-btn">$75,000</button>
+                <button onclick="setAmount(100000)" class="btn btn-outline amt-btn">$100,000</button>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;">
+                <span style="font-family:var(--font-mono);font-weight:600;">$</span>
+                <input id="custom-amt" type="text" placeholder="Enter amount" style="font-family:var(--font-mono);font-size:1rem;width:160px;padding:0.6rem 1rem;border:2px solid var(--color-border);border-radius:8px;text-align:center;outline:none;" oninput="handleCustom(this)">
+            </div>
+        </div>
+
+        <div class="callout green">
+            <p><strong>What this investment unlocks:</strong></p>
+            <p>Founding Steward status (Tier 1, 5x multiplier), negotiated equity in EULA Labs Ventures LLC, governance weight on all financial decisions, and revenue share from day one.</p>
+        </div>
+
+        <ul class="mini-timeline">
+            <li><strong>50% &rarr; Agent Army &amp; AI Consulting</strong> &mdash; Revenue generation starts immediately</li>
+            <li><strong>25% &rarr; Pembrook Down Payment</strong> &mdash; Secure the 3-unit compound</li>
+            <li><strong>15% &rarr; Legal &amp; Form C Filing</strong> &mdash; Launch the $2M Reg CF raise</li>
+            <li><strong>10% &rarr; ARIA Prototypes</strong> &mdash; Build working robotics demos</li>
+        </ul>
+
+        <div class="btn-group" style="justify-content:flex-end;">
+            <button class="btn btn-primary" onclick="goToStep(2)">Continue to Term Sheet &rarr;</button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- STEP 2: REVIEW TERM SHEET -->
+<!-- ============================================ -->
+<div class="container hidden" id="step-2">
+    <div class="step-card">
+        <h2>Term Sheet Review</h2>
+        <p>Review the key terms of the Founding Steward arrangement before proceeding to the Letter of Intent.</p>
+
+        <h3>Partnership Structure</h3>
+        <table>
+            <tbody>
+                <tr><td>Entity</td><td><strong>EULA Labs Ventures LLC</strong> (Delaware)</td></tr>
+                <tr><td>Your Role</td><td><strong>Financial Steward</strong> &mdash; Fund oversight, compliance liaison, investor relations</td></tr>
+                <tr><td>Founder Role</td><td><strong>Durayveon Butler</strong> &mdash; Creative Director &amp; Technical Lead</td></tr>
+                <tr><td>Investment</td><td><strong id="term-amount">$75,000</strong> &mdash; Founding Steward Capital</td></tr>
+                <tr><td>Security Type</td><td>LLC Membership Interests (non-transferable)</td></tr>
+            </tbody>
+        </table>
+
+        <h3>What You Receive</h3>
+        <table>
+            <tbody>
+                <tr><td>Tier 1 Status</td><td>5x contribution multiplier (highest tier)</td></tr>
+                <tr><td>Equity Stake</td><td>Negotiated &mdash; proportional to investment + stewardship commitment</td></tr>
+                <tr><td>Revenue Share</td><td>Pro-rata distribution from 40% contributor allocation pool</td></tr>
+                <tr><td>Governance Weight</td><td>Highest voting power on financial decisions (subject to 5% ceiling)</td></tr>
+                <tr><td>Half-Speed Decay</td><td>Contribution score retains value 2x longer than standard tiers</td></tr>
+                <tr><td>Fund Admin Access</td><td>Full portal access via Carta or Allocations</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Your Responsibilities</h3>
+        <table>
+            <tbody>
+                <tr><td>Fund Administration</td><td>Manage relationship with fund admin platform (Carta/Allocations)</td></tr>
+                <tr><td>Capital Oversight</td><td>Approve milestone-based capital releases across all SPVs</td></tr>
+                <tr><td>Financial Reporting</td><td>Monthly P&amp;L, quarterly investor reports, annual statements</td></tr>
+                <tr><td>Compliance</td><td>Interface with securities attorney and CPA for filings</td></tr>
+                <tr><td>Investor Relations</td><td>Manage current and prospective investor communications</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Execution Timeline (Upon Receipt of Funds)</h3>
+        <table>
+            <tbody>
+                <tr><td>Week 1</td><td>Form LLC, execute operating agreement, open banking</td></tr>
+                <tr><td>Weeks 1&ndash;2</td><td>Deploy AI agents and consulting &mdash; begin generating revenue</td></tr>
+                <tr><td>Weeks 2&ndash;3</td><td>File Form C, launch Reg CF campaign ($2M target)</td></tr>
+                <tr><td>Weeks 2&ndash;4</td><td>Place down payment on Pembrook compound</td></tr>
+                <tr><td>Weeks 3&ndash;6</td><td>Build ARIA Bloom &amp; Guide prototypes</td></tr>
+                <tr><td>Weeks 4&ndash;8</td><td>Hire engineers, scale to $25K&ndash;$50K/mo revenue</td></tr>
+            </tbody>
+        </table>
+
+        <div class="callout amber">
+            <p><strong>Equity split and specific terms</strong> will be finalized in the formal operating agreement drafted by the securities attorney. This term sheet is a summary of the proposed arrangement &mdash; not a binding contract.</p>
+        </div>
+
+        <div class="btn-group" style="justify-content:space-between;">
+            <button class="btn btn-outline" onclick="goToStep(1)">&larr; Back</button>
+            <button class="btn btn-primary" onclick="goToStep(3)">Continue to Letter of Intent &rarr;</button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- STEP 3: SIGN LOI -->
+<!-- ============================================ -->
+<div class="container hidden" id="step-3">
+    <div class="step-card">
+        <h2>Letter of Intent</h2>
+        <p>Review and sign the non-binding Letter of Intent below. This signals your commitment and initiates the formal process.</p>
+
+        <div class="loi-document">
+            <h4>Letter of Intent &mdash; Founding Steward Investment</h4>
+
+            <p>This Letter of Intent (&ldquo;LOI&rdquo;) is entered into as of <strong id="loi-date"></strong> between:</p>
+
+            <p><strong>Party A:</strong> EULA Labs Ventures LLC (to be formed), represented by Durayveon Butler, Creative Director &amp; Technical Lead, Houston, Texas.</p>
+
+            <p><strong>Party B:</strong> <span id="loi-investor-name" style="border-bottom:2px solid var(--color-accent);min-width:200px;display:inline-block;">___________________</span>, in the capacity of proposed Financial Steward.</p>
+
+            <p><strong>1. Intent.</strong> Party B expresses their intent to invest <strong id="loi-amount">$75,000</strong> as Founding Steward Capital into EULA Labs Ventures LLC upon satisfactory completion of due diligence and execution of a formal operating agreement.</p>
+
+            <p><strong>2. Role.</strong> Party B will serve as Financial Steward, responsible for fund administration oversight, capital deployment approval, financial reporting, compliance liaison, and investor relations as described in the term sheet reviewed in the prior step.</p>
+
+            <p><strong>3. Consideration.</strong> In exchange for the investment and stewardship commitment, Party B will receive: (a) Tier 1 contributor status with 5x multiplier; (b) a negotiated equity stake in the LLC; (c) pro-rata revenue share from the 40% contributor allocation; (d) highest governance weight on financial decisions; and (e) half-speed contribution decay.</p>
+
+            <p><strong>4. Capital Deployment.</strong> Funds will be deployed according to the following allocation: 50% to AI agent and consulting operations (immediate revenue generation), 25% to Pembrook compound down payment, 15% to legal and Reg CF filing, and 10% to ARIA prototype development.</p>
+
+            <p><strong>5. Next Steps.</strong> Upon execution of this LOI, the parties agree to: (a) engage a securities attorney within 5 business days; (b) draft and execute a formal operating agreement within 14 business days; (c) form EULA Labs Ventures LLC in Delaware; and (d) initiate capital deployment per the agreed timeline.</p>
+
+            <p><strong>6. Non-Binding.</strong> This LOI is a statement of intent and is not legally binding. No party is obligated to complete the transaction described herein. The formal operating agreement, once executed, will govern all rights and obligations.</p>
+
+            <!-- SIGNATURE BLOCK -->
+            <div class="signature-block">
+                <p style="font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--color-text-muted);margin-bottom:1rem;">Signatures</p>
+
+                <div class="sig-row">
+                    <div class="sig-field">
+                        <label>Party A &mdash; Creative Director</label>
+                        <div class="static-value">Durayveon Butler</div>
+                    </div>
+                    <div class="sig-field">
+                        <label>Date</label>
+                        <div class="static-value" id="sig-date-a"></div>
+                    </div>
+                </div>
+
+                <div class="sig-row">
+                    <div class="sig-field">
+                        <label>Party B &mdash; Financial Steward (Sign Here)</label>
+                        <input type="text" id="sig-name" class="signature-style" placeholder="Type your full legal name" oninput="updateSignature()">
+                    </div>
+                    <div class="sig-field">
+                        <label>Date</label>
+                        <div class="static-value" id="sig-date-b"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="checkbox-row">
+            <input type="checkbox" id="check-review" onchange="updateSignButton()">
+            <span>I have reviewed the full <a href="index.html" target="_blank">EULA Labs investor vision site</a>, the term sheet above, and understand this is a non-binding Letter of Intent.</span>
+        </div>
+        <div class="checkbox-row">
+            <input type="checkbox" id="check-understand" onchange="updateSignButton()">
+            <span>I understand the formal operating agreement will be drafted by a securities attorney and must be executed before any funds are legally committed.</span>
+        </div>
+        <div class="checkbox-row">
+            <input type="checkbox" id="check-capacity" onchange="updateSignButton()">
+            <span>I am entering this LOI in my individual capacity and have the means to fulfill the investment described herein.</span>
+        </div>
+
+        <div class="btn-group" style="justify-content:space-between;">
+            <button class="btn btn-outline" onclick="goToStep(2)">&larr; Back</button>
+            <button class="btn btn-success btn-block" id="sign-btn" onclick="signLOI()" disabled style="max-width:320px;opacity:0.5;">Sign Letter of Intent</button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- STEP 4: WIRE INSTRUCTIONS -->
+<!-- ============================================ -->
+<div class="container hidden" id="step-4">
+    <div class="step-card">
+        <div class="confirmation" id="confirmation-banner">
+            <div class="checkmark">&#10003;</div>
+            <h2>Letter of Intent Signed</h2>
+            <p>Your LOI has been recorded. The next step is to wire the founding steward capital to initiate LLC formation and begin operations.</p>
+            <p style="font-family:var(--font-mono);font-size:0.8rem;color:var(--color-text-muted);" id="conf-ref">Reference: ELV-FS-<span id="conf-date-ref"></span></p>
+        </div>
+
+        <h3>Wire Transfer Instructions</h3>
+        <p>Send your founding steward capital to the account below. Include the reference number in the memo field.</p>
+
+        <div class="wire-card">
+            <h4>Eula Properties &mdash; Chase Business Account</h4>
+            <div class="wire-row">
+                <span class="wire-label">Bank</span>
+                <span class="wire-value">JPMorgan Chase Bank, N.A.</span>
+            </div>
+            <div class="wire-row">
+                <span class="wire-label">Account Name</span>
+                <span class="wire-value">Eula Properties</span>
+            </div>
+            <div class="wire-row">
+                <span class="wire-label">Account Number</span>
+                <span class="wire-value">659892239 <span class="wire-copy" onclick="copyText('659892239')">copy</span></span>
+            </div>
+            <div class="wire-row">
+                <span class="wire-label">Wire Routing Number</span>
+                <span class="wire-value">021000021 <span class="wire-copy" onclick="copyText('021000021')">copy</span></span>
+            </div>
+            <div class="wire-row">
+                <span class="wire-label">ACH Routing Number</span>
+                <span class="wire-value">111000614 <span class="wire-copy" onclick="copyText('111000614')">copy</span></span>
+            </div>
+            <div class="wire-row">
+                <span class="wire-label">Bank Address</span>
+                <span class="wire-value">Chase Bank, Houston, TX</span>
+            </div>
+            <div class="wire-row">
+                <span class="wire-label">Wire Amount</span>
+                <span class="wire-value" id="wire-amount" style="color:var(--color-accent-light);font-size:1.1rem;">$75,000.00</span>
+            </div>
+            <div class="wire-row">
+                <span class="wire-label">Memo / Reference</span>
+                <span class="wire-value" id="wire-memo" style="color:var(--color-accent-light);">ELV-FS-<span id="wire-date-ref"></span></span>
+            </div>
+        </div>
+
+        <div class="callout amber">
+            <p><strong>Important:</strong> Funds wired to Eula Properties will be held and transferred to EULA Labs Ventures LLC upon entity formation (Week 1). The operating agreement will document this transfer as founding capital. Wire receipt triggers immediate execution of the timeline outlined in the term sheet.</p>
+        </div>
+
+        <div class="callout green">
+            <p><strong>Upon receipt of your wire, the following actions begin within 48 hours:</strong></p>
+            <p>&#10003; Delaware LLC formation filing<br>
+            &#10003; Securities attorney engagement for Form C<br>
+            &#10003; Operating agreement drafting (your review within 7 days)<br>
+            &#10003; First AI agent deployments for client revenue<br>
+            &#10003; Pembrook compound earnest money preparation</p>
+        </div>
+
+        <h3 style="margin-top:2rem;">What Happens Next</h3>
+        <ul class="mini-timeline">
+            <li><strong>Wire clears (Day 1&ndash;2)</strong> &mdash; Durayveon confirms receipt, files Delaware LLC</li>
+            <li><strong>Day 3&ndash;5</strong> &mdash; Securities attorney engaged, operating agreement drafting begins</li>
+            <li><strong>Day 5&ndash;7</strong> &mdash; Operating agreement sent to you for review and execution</li>
+            <li><strong>Day 7&ndash;14</strong> &mdash; Both parties execute agreement, agent fleet deploys, consulting outreach begins</li>
+            <li><strong>Week 3+</strong> &mdash; Form C filed, Reg CF campaign launches, Pembrook deposit placed</li>
+        </ul>
+
+        <div style="text-align:center;margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--color-border);">
+            <p style="font-size:0.9rem;"><strong>Questions before wiring?</strong></p>
+            <div class="btn-group" style="justify-content:center;">
+                <a href="mailto:dbutler@eulaproperties.com?subject=EULA%20Labs%20%E2%80%94%20Wire%20Question" class="btn btn-primary">Email Durayveon</a>
+                <a href="tel:+1" class="btn btn-outline">Call to Confirm</a>
+            </div>
+            <p style="font-size:0.8rem;color:var(--color-text-muted);margin-top:1rem;">A signed copy of your LOI has been prepared for your records.<br>
+            <a href="#" onclick="downloadLOI();return false;" style="color:var(--color-accent);">Download LOI as PDF &darr;</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+    <p><a href="index.html">EULA Labs</a> &mdash; Equitable Unified Labs for Advancement &mdash; Houston, TX</p>
+    <p style="margin-top:0.25rem;">&copy; 2026 EULA Labs. This page is confidential and intended for the named recipient only.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+<script>
+    // STATE
+    let currentStep = 1;
+    let maxStep = 1;
+    let investAmount = 75000;
+    let signerName = '';
+
+    // Read amount from URL param
+    (function() {
+        const params = new URLSearchParams(window.location.search);
+        const amt = parseInt(params.get('amount'));
+        if (amt && amt >= 10000) {
+            investAmount = amt;
+        }
+        updateAmountDisplays();
+        setDates();
+    })();
+
+    function formatCurrency(n) {
+        return '$' + n.toLocaleString();
+    }
+
+    function updateAmountDisplays() {
+        document.getElementById('display-amount').textContent = formatCurrency(investAmount);
+        document.getElementById('term-amount').textContent = formatCurrency(investAmount);
+        document.getElementById('loi-amount').textContent = formatCurrency(investAmount);
+        document.getElementById('wire-amount').textContent = formatCurrency(investAmount) + '.00';
+    }
+
+    function setDates() {
+        const now = new Date();
+        const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        const refStr = now.toISOString().slice(0,10).replace(/-/g,'');
+
+        document.getElementById('loi-date').textContent = dateStr;
+        document.getElementById('sig-date-a').textContent = dateStr;
+        document.getElementById('sig-date-b').textContent = dateStr;
+        document.getElementById('conf-date-ref').textContent = refStr;
+        document.getElementById('wire-date-ref').textContent = refStr;
+    }
+
+    function setAmount(amt) {
+        investAmount = amt;
+        updateAmountDisplays();
+        document.querySelectorAll('.amt-btn').forEach(b => {
+            b.style.borderColor = 'var(--color-border)';
+            b.style.color = 'var(--color-text-secondary)';
+        });
+        event.target.style.borderColor = 'var(--color-accent)';
+        event.target.style.color = 'var(--color-primary)';
+    }
+
+    function handleCustom(input) {
+        const raw = input.value.replace(/[^0-9]/g, '');
+        if (raw) {
+            input.value = parseInt(raw).toLocaleString();
+            investAmount = parseInt(raw);
+            updateAmountDisplays();
+        }
+    }
+
+    function toggleAmountEdit() {
+        const editor = document.getElementById('amount-editor');
+        editor.classList.toggle('hidden');
+    }
+
+    // STEPPER
+    function goToStep(step) {
+        if (step > maxStep + 1) return;
+        if (step === 4 && !document.getElementById('sig-name').value) return;
+
+        // Hide all
+        for (let i = 1; i <= 4; i++) {
+            document.getElementById('step-' + i).classList.add('hidden');
+            document.getElementById('step-ind-' + i).classList.remove('active');
+        }
+
+        // Show target
+        document.getElementById('step-' + step).classList.remove('hidden');
+        document.getElementById('step-ind-' + step).classList.add('active');
+
+        // Mark completed
+        for (let i = 1; i < step; i++) {
+            document.getElementById('step-ind-' + i).classList.add('completed');
+            if (document.getElementById('conn-' + i)) {
+                document.getElementById('conn-' + i).classList.add('completed');
+            }
+        }
+
+        currentStep = step;
+        if (step > maxStep) maxStep = step;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // SIGNATURE
+    function updateSignature() {
+        const name = document.getElementById('sig-name').value.trim();
+        signerName = name;
+        document.getElementById('loi-investor-name').textContent = name || '___________________';
+        updateSignButton();
+    }
+
+    function updateSignButton() {
+        const name = document.getElementById('sig-name').value.trim();
+        const c1 = document.getElementById('check-review').checked;
+        const c2 = document.getElementById('check-understand').checked;
+        const c3 = document.getElementById('check-capacity').checked;
+        const btn = document.getElementById('sign-btn');
+
+        if (name.length >= 3 && c1 && c2 && c3) {
+            btn.disabled = false;
+            btn.style.opacity = '1';
+        } else {
+            btn.disabled = true;
+            btn.style.opacity = '0.5';
+        }
+    }
+
+    function signLOI() {
+        if (document.getElementById('sign-btn').disabled) return;
+        goToStep(4);
+    }
+
+    // COPY
+    function copyText(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            const el = event.target;
+            el.textContent = 'copied!';
+            setTimeout(() => { el.textContent = 'copy'; }, 1500);
+        });
+    }
+
+    // DOWNLOAD LOI AS PDF
+    function downloadLOI() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ unit: 'mm', format: 'letter' });
+        const pageW = doc.internal.pageSize.getWidth();
+        const pageH = doc.internal.pageSize.getHeight();
+        const margin = 25;
+        const contentW = pageW - margin * 2;
+        const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        const ref = 'ELV-FS-' + new Date().toISOString().slice(0,10).replace(/-/g,'');
+        let y = margin;
+
+        function checkPage(needed) {
+            if (y + needed > pageH - 25) {
+                doc.addPage();
+                y = margin;
+                // Subtle footer on each page
+                doc.setFontSize(7);
+                doc.setTextColor(180);
+                doc.text('EULA Labs Ventures LLC — Confidential', pageW / 2, pageH - 10, { align: 'center' });
+                doc.setTextColor(0);
+            }
+        }
+
+        function drawLine(yPos, color) {
+            const c = color || [220, 220, 220];
+            doc.setDrawColor(c[0], c[1], c[2]);
+            doc.setLineWidth(0.3);
+            doc.line(margin, yPos, pageW - margin, yPos);
+        }
+
+        function heading(text, size) {
+            checkPage(12);
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(size || 11);
+            doc.setTextColor(26, 54, 93); // navy
+            doc.text(text, margin, y);
+            y += (size || 11) * 0.5 + 2;
+            doc.setTextColor(0);
+        }
+
+        function body(text, opts) {
+            opts = opts || {};
+            checkPage(8);
+            doc.setFont('helvetica', opts.bold ? 'bold' : 'normal');
+            doc.setFontSize(opts.size || 9.5);
+            doc.setTextColor(opts.color || 60);
+            const lines = doc.splitTextToSize(text, contentW);
+            doc.text(lines, margin, y);
+            y += lines.length * (opts.size || 9.5) * 0.4 + (opts.spacing || 3);
+            doc.setTextColor(0);
+        }
+
+        function labelValue(label, value, labelW) {
+            checkPage(8);
+            labelW = labelW || 45;
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(9);
+            doc.setTextColor(100);
+            doc.text(label, margin, y);
+            doc.setFont('helvetica', 'normal');
+            doc.setTextColor(30);
+            doc.text(value, margin + labelW, y);
+            y += 5.5;
+        }
+
+        // === HEADER BAR ===
+        doc.setFillColor(26, 54, 93);
+        doc.rect(0, 0, pageW, 32, 'F');
+
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(18);
+        doc.setTextColor(255);
+        doc.text('EULA Labs', margin, 14);
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(180, 200, 230);
+        doc.text('Equitable Unified Labs for Advancement', margin, 20);
+
+        doc.setFont('courier', 'normal');
+        doc.setFontSize(8);
+        doc.setTextColor(150, 180, 220);
+        doc.text('Ref: ' + ref, pageW - margin, 14, { align: 'right' });
+        doc.text(date, pageW - margin, 19, { align: 'right' });
+
+        y = 42;
+
+        // === TITLE ===
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(16);
+        doc.setTextColor(26, 54, 93);
+        doc.text('Non-Binding Letter of Intent', pageW / 2, y, { align: 'center' });
+        y += 6;
+        doc.setFontSize(10);
+        doc.setTextColor(100);
+        doc.text('Founding Steward Investment', pageW / 2, y, { align: 'center' });
+        y += 10;
+
+        drawLine(y, [26, 54, 93]);
+        y += 8;
+
+        // === PARTIES ===
+        heading('Parties');
+
+        labelValue('Party A:', 'EULA Labs Ventures LLC (to be formed)');
+        labelValue('Represented by:', 'Durayveon Butler, Creative Director & Technical Lead');
+        labelValue('Location:', 'Houston, Texas');
+        y += 2;
+        labelValue('Party B:', signerName);
+        labelValue('Proposed Role:', 'Financial Steward');
+        y += 2;
+
+        // Amount highlight box
+        checkPage(18);
+        doc.setFillColor(240, 255, 244);
+        doc.setDrawColor(56, 161, 105);
+        doc.setLineWidth(0.5);
+        doc.roundedRect(margin, y, contentW, 14, 3, 3, 'FD');
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(9);
+        doc.setTextColor(80);
+        doc.text('Investment Amount:', margin + 5, y + 9);
+        doc.setFont('courier', 'bold');
+        doc.setFontSize(14);
+        doc.setTextColor(26, 54, 93);
+        doc.text(formatCurrency(investAmount), margin + 48, y + 9.5);
+        y += 22;
+
+        drawLine(y);
+        y += 8;
+
+        // === TERMS ===
+        heading('1. Intent');
+        body('Party B expresses their intent to invest ' + formatCurrency(investAmount) + ' as Founding Steward Capital into EULA Labs Ventures LLC upon satisfactory completion of due diligence and execution of a formal operating agreement.');
+
+        heading('2. Role');
+        body('Party B will serve as Financial Steward, responsible for fund administration oversight, capital deployment approval, financial reporting, compliance liaison, and investor relations as described in the EULA Labs investor vision document.');
+
+        heading('3. Consideration');
+        body('In exchange for the investment and stewardship commitment, Party B will receive:');
+        body('(a) Tier 1 contributor status with 5x multiplier (highest tier)', { spacing: 1 });
+        body('(b) A negotiated equity stake in the LLC proportional to investment and stewardship', { spacing: 1 });
+        body('(c) Pro-rata revenue share from the 40% contributor allocation pool', { spacing: 1 });
+        body('(d) Highest governance weight on financial decisions (subject to 5% ceiling)', { spacing: 1 });
+        body('(e) Half-speed contribution decay (score retains value 2x longer)', { spacing: 4 });
+
+        heading('4. Capital Deployment');
+        body('Funds will be deployed according to the following allocation:');
+
+        // Deployment table
+        checkPage(30);
+        const depData = [
+            ['50%', 'AI Agent & Consulting Operations', 'Immediate revenue generation'],
+            ['25%', 'Pembrook Compound Down Payment', 'Hard asset acquisition'],
+            ['15%', 'Legal & Reg CF Filing', 'SEC compliance & $2M campaign'],
+            ['10%', 'ARIA Prototype Development', 'Robotics proof of concept']
+        ];
+        const colX = [margin, margin + 14, margin + 72];
+        doc.setFillColor(247, 250, 252);
+        doc.rect(margin, y - 1, contentW, 6, 'F');
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(7.5);
+        doc.setTextColor(120);
+        doc.text('ALLOC', colX[0], y + 3);
+        doc.text('CATEGORY', colX[1], y + 3);
+        doc.text('PURPOSE', colX[2], y + 3);
+        y += 8;
+        depData.forEach(function(row) {
+            checkPage(7);
+            doc.setFont('courier', 'bold');
+            doc.setFontSize(9);
+            doc.setTextColor(56, 161, 105);
+            doc.text(row[0], colX[0], y);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(40);
+            doc.text(row[1], colX[1], y);
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(8);
+            doc.setTextColor(100);
+            doc.text(row[2], colX[2], y);
+            y += 6;
+        });
+        y += 4;
+
+        heading('5. Execution Timeline');
+        body('Upon execution of this LOI and receipt of funds, the parties agree to the following timeline:');
+        const timeline = [
+            ['Week 1', 'Form EULA Labs Ventures LLC (Delaware), execute operating agreement, open business banking'],
+            ['Weeks 1-2', 'Deploy AI agent fleet and consulting services — begin generating revenue immediately'],
+            ['Weeks 2-3', 'Engage securities attorney, file Form C with SEC, launch Reg CF campaign ($2M target)'],
+            ['Weeks 2-4', 'Place earnest money on Pembrook compound (3 units, Houston, TX)'],
+            ['Weeks 3-6', 'Build ARIA Bloom and ARIA Guide prototypes for Reg CF campaign'],
+            ['Weeks 4-8', 'Hire 1-2 contract engineers, scale consulting to $25K-$50K/mo revenue']
+        ];
+        timeline.forEach(function(row) {
+            checkPage(10);
+            doc.setFont('courier', 'bold');
+            doc.setFontSize(8);
+            doc.setTextColor(49, 130, 206);
+            doc.text(row[0], margin + 2, y);
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(9);
+            doc.setTextColor(60);
+            const tLines = doc.splitTextToSize(row[1], contentW - 30);
+            doc.text(tLines, margin + 28, y);
+            y += tLines.length * 4 + 3;
+        });
+        y += 2;
+
+        heading('6. Non-Binding');
+        body('This Letter of Intent is a statement of intent and is not legally binding. No party is obligated to complete the transaction described herein. The formal operating agreement, once drafted by a securities attorney and executed by both parties, will govern all rights and obligations.');
+        y += 4;
+
+        drawLine(y, [26, 54, 93]);
+        y += 10;
+
+        // === SIGNATURES ===
+        heading('Signatures', 12);
+        y += 4;
+
+        checkPage(40);
+
+        // Party A
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(8);
+        doc.setTextColor(140);
+        doc.text('PARTY A — CREATIVE DIRECTOR & TECHNICAL LEAD', margin, y);
+        y += 8;
+        doc.setFont('helvetica', 'italic');
+        doc.setFontSize(14);
+        doc.setTextColor(26, 54, 93);
+        doc.text('Durayveon Butler', margin, y);
+        drawLine(y + 2);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(8);
+        doc.setTextColor(120);
+        doc.text('Date: ' + date, pageW - margin, y, { align: 'right' });
+        y += 16;
+
+        // Party B
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(8);
+        doc.setTextColor(140);
+        doc.text('PARTY B — FINANCIAL STEWARD', margin, y);
+        y += 8;
+        doc.setFont('helvetica', 'italic');
+        doc.setFontSize(14);
+        doc.setTextColor(26, 54, 93);
+        doc.text(signerName, margin, y);
+        drawLine(y + 2);
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(8);
+        doc.setTextColor(120);
+        doc.text('Date: ' + date, pageW - margin, y, { align: 'right' });
+        y += 18;
+
+        // === FOOTER ===
+        drawLine(y, [200, 200, 200]);
+        y += 6;
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7.5);
+        doc.setTextColor(160);
+        doc.text('EULA Labs — Equitable Unified Labs for Advancement', pageW / 2, y, { align: 'center' });
+        y += 4;
+        doc.text('Houston, TX  |  dbutler@eulaproperties.com  |  github.com/dbutler-a11y/eula-labs-ventures', pageW / 2, y, { align: 'center' });
+        y += 4;
+        doc.text('This document is confidential and intended for the named parties only.', pageW / 2, y, { align: 'center' });
+
+        // Page numbers
+        const totalPages = doc.internal.getNumberOfPages();
+        for (let i = 1; i <= totalPages; i++) {
+            doc.setPage(i);
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(7);
+            doc.setTextColor(180);
+            doc.text('Page ' + i + ' of ' + totalPages, pageW / 2, pageH - 10, { align: 'center' });
+        }
+
+        doc.save('EULA-Labs-LOI-' + signerName.replace(/\s+/g, '-') + '.pdf');
+    }
+</script>
+
+</body>
+</html>

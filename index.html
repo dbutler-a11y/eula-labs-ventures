@@ -279,6 +279,16 @@
         .tier-4 { color: #d69e2e; }
         .tier-5 { color: var(--color-text-muted); }
 
+        /* INVEST BUTTONS */
+        .invest-btn:hover {
+            border-color: var(--color-accent) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(49,130,206,0.15);
+        }
+        .invest-btn:active {
+            transform: translateY(0);
+        }
+
         /* RESPONSIVE */
         @media (max-width: 900px) {
             .stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -309,6 +319,7 @@
             <li><a href="#regcf">Reg CF</a></li>
             <li><a href="#governance">Governance</a></li>
             <li><a href="#steward">Steward</a></li>
+            <li><a href="#invest" style="color:var(--color-success);font-weight:600;">Invest</a></li>
         </ul>
     </div>
 </nav>
@@ -804,13 +815,160 @@
     </div>
 </section>
 
+<!-- INVEST NOW — DEANGELO DECISION SECTION -->
+<section id="invest" class="section-alt">
+    <div class="container">
+        <div class="section-header">
+            <h2>Make Your Move</h2>
+            <p>Select your founding steward investment level. Upon receipt of funds, the following actions execute immediately &mdash; no waiting, no committees, no delays.</p>
+        </div>
+
+        <!-- INVESTMENT SELECTOR -->
+        <div style="max-width:680px;margin:0 auto 3rem;">
+            <p style="text-align:center;font-weight:600;color:var(--color-primary);margin-bottom:1.5rem;">Select Your Investment Level</p>
+            <div id="invest-options" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;">
+                <button onclick="selectAmount(50000)" class="invest-btn" data-amount="50000" style="background:white;border:2px solid var(--color-border);border-radius:12px;padding:1.5rem 1rem;cursor:pointer;transition:all 0.2s;text-align:center;">
+                    <div style="font-family:var(--font-mono);font-size:1.5rem;font-weight:600;color:var(--color-primary);">$50K</div>
+                    <div style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.25rem;">Founding Steward</div>
+                </button>
+                <button onclick="selectAmount(75000)" class="invest-btn" data-amount="75000" style="background:white;border:2px solid var(--color-border);border-radius:12px;padding:1.5rem 1rem;cursor:pointer;transition:all 0.2s;text-align:center;">
+                    <div style="font-family:var(--font-mono);font-size:1.5rem;font-weight:600;color:var(--color-primary);">$75K</div>
+                    <div style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.25rem;">Recommended</div>
+                </button>
+                <button onclick="selectAmount(100000)" class="invest-btn" data-amount="100000" style="background:white;border:2px solid var(--color-border);border-radius:12px;padding:1.5rem 1rem;cursor:pointer;transition:all 0.2s;text-align:center;">
+                    <div style="font-family:var(--font-mono);font-size:1.5rem;font-weight:600;color:var(--color-primary);">$100K</div>
+                    <div style="font-size:0.8rem;color:var(--color-text-muted);margin-top:0.25rem;">Maximum Impact</div>
+                </button>
+            </div>
+            <div style="text-align:center;margin-bottom:1rem;">
+                <label style="font-size:0.85rem;color:var(--color-text-muted);">Or enter a custom amount:</label>
+                <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:0.5rem;">
+                    <span style="font-family:var(--font-mono);font-size:1.1rem;color:var(--color-primary);font-weight:600;">$</span>
+                    <input id="custom-amount" type="text" placeholder="50,000" oninput="handleCustomAmount(this)" style="font-family:var(--font-mono);font-size:1.1rem;width:160px;padding:0.6rem 1rem;border:2px solid var(--color-border);border-radius:8px;text-align:center;outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--color-accent)'" onblur="this.style.borderColor='var(--color-border)'">
+                </div>
+            </div>
+        </div>
+
+        <!-- WHAT HAPPENS UPON RECEIPT -->
+        <div style="max-width:800px;margin:0 auto;">
+            <h3 style="text-align:center;margin-bottom:0.5rem;">Upon Receipt of Funds</h3>
+            <p style="text-align:center;font-size:0.9rem;margin-bottom:2rem;">The moment capital clears, the following actions trigger &mdash; in this order, on this timeline.</p>
+
+            <div class="execution-timeline">
+                <!-- WEEK 1 -->
+                <div class="card" style="border-left:4px solid var(--color-success);margin-bottom:1.25rem;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
+                        <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:600;color:var(--color-success);background:#f0fff4;padding:0.25rem 0.75rem;border-radius:12px;">WEEK 1</span>
+                        <span style="font-size:0.8rem;color:var(--color-text-muted);">Legal &amp; Entity Formation</span>
+                    </div>
+                    <h4 style="font-size:1rem;margin-bottom:0.5rem;">Form EULA Labs Ventures LLC</h4>
+                    <p style="font-size:0.85rem;margin:0;">File the Delaware LLC formation. Execute the operating agreement naming Durayveon Butler as Creative Director &amp; Technical Lead and DeAngelo Kirkland as Financial Steward. Open the business banking account. Engage securities attorney to begin Form C preparation.</p>
+                </div>
+
+                <!-- WEEK 1-2 -->
+                <div class="card" style="border-left:4px solid var(--color-accent);margin-bottom:1.25rem;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
+                        <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:600;color:var(--color-accent);background:#ebf8ff;padding:0.25rem 0.75rem;border-radius:12px;">WEEKS 1&ndash;2</span>
+                        <span style="font-size:0.8rem;color:var(--color-text-muted);">Revenue Generation — Immediate</span>
+                    </div>
+                    <h4 style="font-size:1rem;margin-bottom:0.5rem;">Launch AI Consulting &amp; Agent Services</h4>
+                    <p style="font-size:0.85rem;margin:0;">Deploy the first AI agent fleet (OpenClaw) for paid client work immediately. Begin outreach for AI consulting retainer clients under the EULA Labs brand. These revenue streams require zero physical infrastructure &mdash; they start generating income from day one while the rest of the operation builds out.</p>
+                    <div style="font-family:var(--font-mono);font-size:0.85rem;color:var(--color-success);margin-top:0.5rem;">Target: $10K&ndash;$25K/mo within 60 days</div>
+                </div>
+
+                <!-- WEEK 2-3 -->
+                <div class="card" style="border-left:4px solid #6b46c1;margin-bottom:1.25rem;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
+                        <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:600;color:#6b46c1;background:#faf5ff;padding:0.25rem 0.75rem;border-radius:12px;">WEEKS 2&ndash;3</span>
+                        <span style="font-size:0.8rem;color:var(--color-text-muted);">Fundraising Campaign</span>
+                    </div>
+                    <h4 style="font-size:1rem;margin-bottom:0.5rem;">File Form C &amp; Launch Reg CF Campaign</h4>
+                    <p style="font-size:0.85rem;margin:0;">Securities attorney files Form C with the SEC. Campaign goes live on Wefunder or Republic targeting $2M from the general public. Your founding steward investment is the proof of commitment that anchors the entire raise &mdash; the first money in signals conviction to every investor who follows.</p>
+                </div>
+
+                <!-- WEEK 2-4 -->
+                <div class="card" style="border-left:4px solid #dd6b20;margin-bottom:1.25rem;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
+                        <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:600;color:#dd6b20;background:#fffaf0;padding:0.25rem 0.75rem;border-radius:12px;">WEEKS 2&ndash;4</span>
+                        <span style="font-size:0.8rem;color:var(--color-text-muted);">Real Estate</span>
+                    </div>
+                    <h4 style="font-size:1rem;margin-bottom:0.5rem;">Secure Pembrook Compound — Down Payment</h4>
+                    <p style="font-size:0.85rem;margin:0;">Place earnest money on the Pembrook 3-unit compound. Engage real estate attorney for title, closing, and zoning compliance. Begin renovation planning for compute lab and education center buildout. The property is the hard asset anchor for the entire $2M raise.</p>
+                    <div style="font-family:var(--font-mono);font-size:0.85rem;color:var(--color-text-muted);margin-top:0.5rem;" id="re-allocation">Allocated from steward capital: deposit + closing reserve</div>
+                </div>
+
+                <!-- WEEK 3-6 -->
+                <div class="card" style="border-left:4px solid #e53e3e;margin-bottom:1.25rem;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
+                        <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:600;color:#e53e3e;background:#fff5f5;padding:0.25rem 0.75rem;border-radius:12px;">WEEKS 3&ndash;6</span>
+                        <span style="font-size:0.8rem;color:var(--color-text-muted);">Robotics &amp; Research</span>
+                    </div>
+                    <h4 style="font-size:1rem;margin-bottom:0.5rem;">Build First ARIA Prototypes</h4>
+                    <p style="font-size:0.85rem;margin:0;">Order components for ARIA Bloom and ARIA Guide prototypes. Begin assembly, testing, and documentation. These working prototypes become the centerpiece of the Reg CF campaign &mdash; tangible proof that open-source assistive robotics for Parkinson's disease is real, buildable, and under $500.</p>
+                    <div style="font-family:var(--font-mono);font-size:0.85rem;color:var(--color-text-muted);margin-top:0.5rem;">BOM cost per prototype: $280&ndash;$380</div>
+                </div>
+
+                <!-- WEEK 4-8 -->
+                <div class="card" style="border-left:4px solid var(--color-primary);margin-bottom:0;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.75rem;">
+                        <span style="font-family:var(--font-mono);font-size:0.75rem;font-weight:600;color:var(--color-primary);background:#ebf8ff;padding:0.25rem 0.75rem;border-radius:12px;">WEEKS 4&ndash;8</span>
+                        <span style="font-size:0.8rem;color:var(--color-text-muted);">Team &amp; Scale</span>
+                    </div>
+                    <h4 style="font-size:1rem;margin-bottom:0.5rem;">Build the AI Team &amp; Scale Consulting Revenue</h4>
+                    <p style="font-size:0.85rem;margin:0;">Hire the first 1&ndash;2 contract engineers. Scale agent deployments and consulting engagements. Onboard compute infrastructure. By week 8, the business should be generating consistent monthly revenue from consulting and agent services &mdash; self-sustaining operations that fund continued growth independent of the Reg CF raise.</p>
+                    <div style="font-family:var(--font-mono);font-size:0.85rem;color:var(--color-success);margin-top:0.5rem;">Target: $25K&ndash;$50K/mo by month 3</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CAPITAL SPLIT VISUALIZATION -->
+        <div id="capital-split" style="max-width:680px;margin:3rem auto 0;">
+            <h3 style="text-align:center;margin-bottom:1.5rem;">How Your <span id="split-amount" style="font-family:var(--font-mono);color:var(--color-success);">$75,000</span> Deploys</h3>
+            <div class="budget-bar" style="gap:10px;">
+                <div class="budget-bar-row">
+                    <div class="budget-bar-track" style="width:60%;">
+                        <div class="budget-bar-fill" style="width:100%;background:var(--color-accent);border-radius:5px;" id="bar-agents"></div>
+                    </div>
+                    <span class="budget-bar-label" id="label-agents">50% — Agent Army &amp; Consulting Launch</span>
+                </div>
+                <div class="budget-bar-row">
+                    <div class="budget-bar-track" style="width:60%;">
+                        <div class="budget-bar-fill" style="width:60%;background:#dd6b20;border-radius:5px;" id="bar-pembrook"></div>
+                    </div>
+                    <span class="budget-bar-label" id="label-pembrook">25% — Pembrook Down Payment &amp; Closing</span>
+                </div>
+                <div class="budget-bar-row">
+                    <div class="budget-bar-track" style="width:60%;">
+                        <div class="budget-bar-fill" style="width:30%;background:#6b46c1;border-radius:5px;" id="bar-legal"></div>
+                    </div>
+                    <span class="budget-bar-label" id="label-legal">15% — Legal, Form C, &amp; Compliance</span>
+                </div>
+                <div class="budget-bar-row">
+                    <div class="budget-bar-track" style="width:60%;">
+                        <div class="budget-bar-fill" style="width:20%;background:var(--color-success);border-radius:5px;" id="bar-aria"></div>
+                    </div>
+                    <span class="budget-bar-label" id="label-aria">10% — ARIA Prototypes &amp; Hardware</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA BUTTON -->
+        <div style="text-align:center;margin-top:3rem;">
+            <a id="cta-button" href="commit.html?amount=75000" class="btn btn-primary" style="font-size:1.1rem;padding:1.1rem 2.5rem;background:var(--color-success);border-radius:10px;">
+                I&rsquo;m Ready &mdash; Let&rsquo;s Move Forward &rarr;
+            </a>
+            <p style="font-size:0.85rem;color:var(--color-text-muted);margin-top:1rem;">Proceeds to term sheet review, Letter of Intent, and wire instructions. No funds are committed until the operating agreement is signed by both parties.</p>
+        </div>
+    </div>
+</section>
+
 <!-- CTA -->
 <section class="cta-section">
     <div class="container">
-        <h2>Join the Founding Round</h2>
-        <p><em>Equitable Unified Labs for Advancement.</em> Backed by real assets, governed by the community, and open to everyone.</p>
+        <h2>The Window Is Now</h2>
+        <p>AI agent infrastructure is scaling exponentially. First movers in community-owned compute and open-source robotics will define the next decade. This is not a pitch &mdash; it&rsquo;s an invitation to build.</p>
         <div>
-            <a href="mailto:dbutler@eulaproperties.com?subject=EULA%20Labs%20-%20Founding%20Round%20Interest" class="btn btn-primary">Start the Conversation</a>
+            <a href="#invest" class="btn btn-primary">Select Investment Amount &uarr;</a>
             <a href="https://github.com/moltbot47/open-claw/blob/main/paper/coordinated-intelligence-systems.md" class="btn btn-secondary" target="_blank">Read the Research Paper</a>
         </div>
         <div class="cta-links">
@@ -820,6 +978,66 @@
         </div>
     </div>
 </section>
+
+<script>
+    let selectedAmount = 75000;
+
+    function selectAmount(amount) {
+        selectedAmount = amount;
+        document.getElementById('custom-amount').value = '';
+        updateUI();
+    }
+
+    function handleCustomAmount(input) {
+        const raw = input.value.replace(/[^0-9]/g, '');
+        if (raw) {
+            input.value = parseInt(raw).toLocaleString();
+            selectedAmount = parseInt(raw);
+            updateUI();
+        }
+    }
+
+    function updateUI() {
+        // Update button states
+        document.querySelectorAll('.invest-btn').forEach(btn => {
+            const amt = parseInt(btn.dataset.amount);
+            if (amt === selectedAmount) {
+                btn.style.borderColor = 'var(--color-accent)';
+                btn.style.background = '#ebf8ff';
+                btn.style.transform = 'translateY(-2px)';
+                btn.style.boxShadow = '0 4px 12px rgba(49,130,206,0.15)';
+            } else {
+                btn.style.borderColor = 'var(--color-border)';
+                btn.style.background = 'white';
+                btn.style.transform = 'none';
+                btn.style.boxShadow = 'none';
+            }
+        });
+
+        // Update split display
+        const formatted = '$' + selectedAmount.toLocaleString();
+        document.getElementById('split-amount').textContent = formatted;
+
+        // Calculate splits
+        const agents = Math.round(selectedAmount * 0.50);
+        const pembrook = Math.round(selectedAmount * 0.25);
+        const legal = Math.round(selectedAmount * 0.15);
+        const aria = Math.round(selectedAmount * 0.10);
+
+        document.getElementById('label-agents').textContent = '50% — Agent Army & Consulting Launch ($' + agents.toLocaleString() + ')';
+        document.getElementById('label-pembrook').textContent = '25% — Pembrook Down Payment & Closing ($' + pembrook.toLocaleString() + ')';
+        document.getElementById('label-legal').textContent = '15% — Legal, Form C, & Compliance ($' + legal.toLocaleString() + ')';
+        document.getElementById('label-aria').textContent = '10% — ARIA Prototypes & Hardware ($' + aria.toLocaleString() + ')';
+
+        // Update CTA button to link to commit page with amount
+        document.getElementById('cta-button').href = 'commit.html?amount=' + selectedAmount;
+    }
+
+    // Initialize with $75K selected
+    document.addEventListener('DOMContentLoaded', function() {
+        selectAmount(75000);
+    });
+</script>
 
 <!-- FOOTER -->
 <footer>
