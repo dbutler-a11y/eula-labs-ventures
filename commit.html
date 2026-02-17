@@ -1139,6 +1139,9 @@
         var btn = document.getElementById('email-loi-btn');
         if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
 
+        // Download PDF FIRST (must be synchronous from user click or browser blocks it)
+        try { downloadLOI(); } catch(e) { console.log('PDF generation error:', e); }
+
         var ref = 'ELV-FS-' + new Date().toISOString().slice(0,10).replace(/-/g,'');
         var loiText = [
             'SIGNER: ' + (signerName || '(pending)'),
@@ -1163,6 +1166,7 @@
             'Contact: dbutler@eulaproperties.com'
         ].join('\n');
 
+        // Then send email (async, non-blocking)
         emailjs.send('service_t5o7r2k', 'template_dzpo5f6', {
             email: email,
             event_type: 'Your Letter of Intent — EULA Labs',
@@ -1175,14 +1179,12 @@
         })
         .then(function() {
             var s = document.getElementById('email-loi-status');
-            if (s) { s.textContent = 'LOI emailed to ' + email + ' — PDF downloading...'; s.style.color = '#38a169'; s.style.display = 'block'; }
+            if (s) { s.textContent = 'LOI emailed to ' + email + ' + PDF downloaded'; s.style.color = '#38a169'; s.style.display = 'block'; }
             if (btn) { btn.textContent = 'Sent!'; }
-            // Auto-download PDF alongside the email
-            try { downloadLOI(); } catch(e) { console.log('PDF auto-download failed:', e); }
         })
         .catch(function(err) {
             var s = document.getElementById('email-loi-status');
-            if (s) { s.textContent = 'Failed — try downloading instead.'; s.style.color = '#e53e3e'; s.style.display = 'block'; }
+            if (s) { s.textContent = 'Email failed — PDF still downloaded.'; s.style.color = '#e53e3e'; s.style.display = 'block'; }
             if (btn) { btn.textContent = 'Email LOI to Me'; btn.disabled = false; }
         });
     }
