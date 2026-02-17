@@ -1130,7 +1130,16 @@
     // SEND EMAIL ALERT
     // =============================================
     function sendAlert(eventType, data) {
-        // EmailJS is configured and ready
+        if (typeof emailjs === 'undefined') {
+            console.log('[EULA Tracker] EmailJS not loaded:', eventType, data);
+            return;
+        }
+
+        // Build details summary so {{details}} renders in email
+        var detailLines = [];
+        Object.keys(data).forEach(function(k) {
+            detailLines.push(k.replace(/_/g, ' ').toUpperCase() + ': ' + data[k]);
+        });
 
         var params = {
             event_type: eventType,
@@ -1138,11 +1147,10 @@
             timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }),
             referrer: referrer,
             page: 'index.html (Investor Vision Site)',
-            user_agent: navigator.userAgent.substr(0, 120)
+            user_agent: navigator.userAgent.substr(0, 120),
+            details: detailLines.join('\n'),
+            cc_email: ''
         };
-
-        // Merge extra data
-        Object.keys(data).forEach(function(k) { params[k] = data[k]; });
 
         emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_INVESTOR, params)
             .then(function() { console.log('[EULA Tracker] Alert sent:', eventType); })

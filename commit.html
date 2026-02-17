@@ -580,6 +580,11 @@
             <span>I am entering this LOI in my individual capacity and have the means to fulfill the investment described herein.</span>
         </div>
 
+        <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--color-border);">
+            <label style="display:block;font-size:0.85rem;font-weight:500;color:var(--color-text-secondary);margin-bottom:0.5rem;">Your email (optional — receive a signed copy of the LOI)</label>
+            <input type="email" id="investor-email" placeholder="your@email.com" style="width:100%;padding:0.75rem 1rem;border:2px solid var(--color-border);border-radius:8px;font-family:var(--font-sans);font-size:1rem;outline:none;" onfocus="this.style.borderColor='var(--color-accent)'" onblur="this.style.borderColor='var(--color-border)'">
+        </div>
+
         <div class="btn-group" style="justify-content:space-between;">
             <button class="btn btn-outline" onclick="goToStep(2)">&larr; Back</button>
             <button class="btn btn-success btn-block" id="sign-btn" onclick="signLOI()" disabled style="max-width:320px;opacity:0.5;">Sign Letter of Intent</button>
@@ -666,8 +671,12 @@
                 <a href="mailto:dbutler@eulaproperties.com?subject=EULA%20Labs%20%E2%80%94%20Wire%20Question" class="btn btn-primary">Email Durayveon</a>
                 <a href="tel:+1" class="btn btn-outline">Call to Confirm</a>
             </div>
-            <p style="font-size:0.8rem;color:var(--color-text-muted);margin-top:1rem;">A signed copy of your LOI has been prepared for your records.<br>
-            <a href="#" onclick="downloadLOI();return false;" style="color:var(--color-accent);">Download LOI as PDF &darr;</a></p>
+            <p style="font-size:0.8rem;color:var(--color-text-muted);margin-top:1rem;">A signed copy of your LOI has been prepared for your records.</p>
+            <div style="display:flex;gap:1rem;justify-content:center;margin-top:0.75rem;flex-wrap:wrap;">
+                <a href="#" onclick="downloadLOI();return false;" class="btn btn-outline" style="font-size:0.85rem;">Download LOI as PDF &darr;</a>
+                <button onclick="emailLOI()" class="btn btn-primary" style="font-size:0.85rem;" id="email-loi-btn">Email LOI to Me</button>
+            </div>
+            <p id="email-loi-status" style="font-size:0.8rem;color:var(--color-success);margin-top:0.5rem;text-align:center;display:none;"></p>
         </div>
     </div>
 </div>
@@ -1093,10 +1102,28 @@
         doc.save('EULA-Labs-LOI-' + signerName.replace(/\s+/g, '-') + '.pdf');
 
         // Track PDF download
-        trackEvent('loi_pdf_downloaded', {
-            signer_name: signerName,
-            amount: formatCurrency(investAmount)
-        });
+        if (typeof trackEvent === 'function') {
+            trackEvent('loi_pdf_downloaded', {
+                signer_name: signerName,
+                amount: formatCurrency(investAmount)
+            });
+        }
+    }
+
+    // EMAIL LOI TO INVESTOR
+    function emailLOI() {
+        var email = window.investorEmail || (document.getElementById('investor-email') ? document.getElementById('investor-email').value.trim() : '');
+        if (!email) {
+            email = prompt('Enter your email address to receive a copy of the LOI:');
+            if (!email || !email.trim()) return;
+            email = email.trim();
+        }
+        window.investorEmail = email;
+        if (typeof window.sendInvestorLOI === 'function') {
+            window.sendInvestorLOI(email);
+        } else {
+            alert('Email service is loading. Please try again in a moment.');
+        }
     }
 </script>
 
@@ -1107,20 +1134,14 @@
 
 <script>
 (function() {
-    // =============================================
-    // EMAILJS CONFIG — REPLACE THESE AFTER SIGNUP
-    // =============================================
     const EMAILJS_PUBLIC_KEY = 'V2vYxbHt6tE8RxBqu';
     const EMAILJS_SERVICE_ID = 'service_t5o7r2k';
     const EMAILJS_TEMPLATE_INVESTOR = 'template_dzpo5f6';
-    // =============================================
 
-    // Init EmailJS
     if (typeof emailjs !== 'undefined') {
         emailjs.init(EMAILJS_PUBLIC_KEY);
     }
 
-    // Session info
     const visitorId = 'V-' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
     const sessionStart = Date.now();
     const referrer = document.referrer || 'direct';
@@ -1128,28 +1149,6 @@
     const stepTimes = {};
     let currentTrackedStep = 1;
     stepTimes[1] = Date.now();
-
-    // =============================================
-    // SEND EMAIL ALERT
-    // =============================================
-    window.trackEvent = function(eventType, data) {
-        // EmailJS is configured and ready
-
-        var params = {
-            event_type: eventType,
-            visitor_id: visitorId,
-            timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }),
-            referrer: referrer,
-            page: 'commit.html (Commitment Flow)',
-            user_agent: navigator.userAgent.substr(0, 120)
-        };
-
-        Object.keys(data).forEach(function(k) { params[k] = data[k]; });
-
-        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_INVESTOR, params)
-            .then(function() { console.log('[EULA Tracker] Alert sent:', eventType); })
-            .catch(function(err) { console.log('[EULA Tracker] Alert failed:', err); });
-    };
 
     function formatTime(ms) {
         var s = Math.round(ms / 1000);
@@ -1160,33 +1159,63 @@
     }
 
     // =============================================
+    // SEND EMAIL ALERT — builds {{details}} from data
+    // =============================================
+    window.trackEvent = function(eventType, data, ccEmail) {
+        if (typeof emailjs === 'undefined') {
+            console.log('[EULA Tracker] EmailJS not loaded:', eventType, data);
+            return;
+        }
+
+        var detailLines = [];
+        Object.keys(data).forEach(function(k) {
+            detailLines.push(k.replace(/_/g, ' ').toUpperCase() + ': ' + data[k]);
+        });
+
+        var params = {
+            event_type: eventType,
+            visitor_id: visitorId,
+            timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }),
+            referrer: referrer,
+            page: 'commit.html (Commitment Flow)',
+            user_agent: navigator.userAgent.substr(0, 120),
+            details: detailLines.join('\n'),
+            cc_email: ccEmail || ''
+        };
+
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_INVESTOR, params)
+            .then(function() { console.log('[EULA Tracker] Alert sent:', eventType); })
+            .catch(function(err) { console.log('[EULA Tracker] Alert failed:', err); });
+    };
+
+    // =============================================
     // STEP PROGRESSION TRACKING
     // =============================================
-    // Override goToStep to add tracking
     var originalGoToStep = window.goToStep;
     window.goToStep = function(step) {
-        // Record time on previous step
         var prevStep = currentTrackedStep;
         var timeOnPrev = Date.now() - (stepTimes[prevStep] || Date.now());
         stepTimes[step] = Date.now();
         currentTrackedStep = step;
 
-        // Call original
+        // Call original FIRST so page always navigates
         originalGoToStep(step);
 
-        // Send alert for step progression
-        trackEvent('step_reached', {
-            step_number: step,
-            step_name: stepNames[step] || 'Unknown',
-            previous_step: stepNames[prevStep] || 'Unknown',
-            time_on_previous: formatTime(timeOnPrev),
-            total_session_time: formatTime(Date.now() - sessionStart),
-            investment_amount: '$' + investAmount.toLocaleString()
-        });
+        // Then send tracking (non-blocking)
+        try {
+            trackEvent('Step Reached: ' + (stepNames[step] || step), {
+                step_number: step,
+                step_name: stepNames[step] || 'Unknown',
+                previous_step: stepNames[prevStep] || 'Unknown',
+                time_on_previous_step: formatTime(timeOnPrev),
+                total_session_time: formatTime(Date.now() - sessionStart),
+                investment_amount: '$' + investAmount.toLocaleString()
+            });
+        } catch(e) { console.log('[EULA Tracker] Error:', e); }
     };
 
     // =============================================
-    // LOI SIGNATURE TRACKING (HIGH PRIORITY ALERT)
+    // LOI SIGNATURE TRACKING (HIGH PRIORITY)
     // =============================================
     var originalSignLOI = window.signLOI;
     window.signLOI = function() {
@@ -1194,10 +1223,11 @@
 
         var name = document.getElementById('sig-name').value.trim();
         var ref = 'ELV-FS-' + new Date().toISOString().slice(0,10).replace(/-/g,'');
+        var emailInput = document.getElementById('investor-email');
+        var email = emailInput ? emailInput.value.trim() : '';
+        if (email) window.investorEmail = email;
 
-        // Build step journey summary
         var journey = [];
-        var prevTime = sessionStart;
         [1, 2, 3].forEach(function(s) {
             if (stepTimes[s]) {
                 var duration = (stepTimes[s + 1] || Date.now()) - stepTimes[s];
@@ -1205,18 +1235,80 @@
             }
         });
 
-        // CRITICAL ALERT — LOI SIGNED
-        trackEvent('loi_signed', {
-            signer_name: name,
-            investment_amount: '$' + investAmount.toLocaleString(),
-            reference: ref,
-            total_session_time: formatTime(Date.now() - sessionStart),
-            step_journey: journey.join('\n') || 'Direct',
-            message: 'FOUNDING STEWARD LOI SIGNED — ' + name + ' has signed a non-binding Letter of Intent for $' + investAmount.toLocaleString() + '. Reference: ' + ref + '. Awaiting wire transfer.'
-        });
-
-        // Call original
+        // Call original FIRST
         originalSignLOI();
+
+        // Then send tracking
+        try {
+            trackEvent('LOI SIGNED', {
+                signer_name: name,
+                signer_email: email || '(not provided)',
+                investment_amount: '$' + investAmount.toLocaleString(),
+                reference: ref,
+                total_session_time: formatTime(Date.now() - sessionStart),
+                step_journey: journey.join('\n') || 'Direct',
+                message: 'FOUNDING STEWARD LOI SIGNED — ' + name + ' committed $' + investAmount.toLocaleString() + '. Ref: ' + ref + '. Awaiting wire.'
+            });
+
+            // Auto-send LOI to investor if they provided email
+            if (email) {
+                window.sendInvestorLOI(email);
+            }
+        } catch(e) { console.log('[EULA Tracker] Error:', e); }
+    };
+
+    // =============================================
+    // SEND LOI COPY TO INVESTOR
+    // =============================================
+    window.sendInvestorLOI = function(email) {
+        if (typeof emailjs === 'undefined') return;
+
+        var ref = 'ELV-FS-' + new Date().toISOString().slice(0,10).replace(/-/g,'');
+        var loiContent = [
+            'SIGNER: ' + (signerName || '(pending)'),
+            'INVESTMENT: $' + investAmount.toLocaleString(),
+            'REFERENCE: ' + ref,
+            'ROLE: Financial Steward',
+            'ENTITY: EULA Labs Ventures LLC (Delaware)',
+            '',
+            'CAPITAL DEPLOYMENT:',
+            '  50% — AI Agent & Consulting (immediate revenue)',
+            '  25% — Pembrook Compound Down Payment',
+            '  15% — Legal & Reg CF Filing',
+            '  10% — ARIA Prototype Development',
+            '',
+            'NEXT STEPS:',
+            '  1. Securities attorney engaged within 5 business days',
+            '  2. Operating agreement drafted within 14 business days',
+            '  3. EULA Labs Ventures LLC formed in Delaware',
+            '  4. Capital deployment per agreed timeline',
+            '',
+            'This is a non-binding Letter of Intent.',
+            'The formal operating agreement will govern all rights and obligations.',
+            '',
+            'Contact: dbutler@eulaproperties.com'
+        ].join('\n');
+
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_INVESTOR, {
+            event_type: 'Letter of Intent — ' + (signerName || 'Investor'),
+            visitor_id: signerName || email,
+            timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }),
+            referrer: 'EULA Labs Ventures',
+            page: 'Founding Steward Commitment',
+            user_agent: '',
+            details: loiContent,
+            cc_email: email
+        })
+        .then(function() {
+            console.log('[EULA Tracker] LOI emailed to:', email);
+            var s = document.getElementById('email-loi-status');
+            if (s) { s.textContent = 'LOI sent to ' + email; s.style.color = '#38a169'; s.style.display = 'block'; }
+        })
+        .catch(function(err) {
+            console.log('[EULA Tracker] LOI email failed:', err);
+            var s = document.getElementById('email-loi-status');
+            if (s) { s.textContent = 'Failed to send — try downloading instead.'; s.style.color = '#e53e3e'; s.style.display = 'block'; }
+        });
     };
 
     // =============================================
@@ -1228,7 +1320,7 @@
         exitAlertSent = true;
 
         var totalTime = Date.now() - sessionStart;
-        if (totalTime < 3000) return; // skip bounces
+        if (totalTime < 3000) return;
 
         var journey = [];
         [1, 2, 3, 4].forEach(function(s) {
@@ -1245,12 +1337,12 @@
         var highestStep = 1;
         [1, 2, 3, 4].forEach(function(s) { if (stepTimes[s]) highestStep = s; });
 
-        trackEvent('session_ended', {
+        trackEvent('Session Ended', {
             highest_step_reached: stepNames[highestStep],
             completed_loi: highestStep >= 4 ? 'YES' : 'NO',
             investment_amount: '$' + investAmount.toLocaleString(),
             total_session_time: formatTime(totalTime),
-            step_journey: journey.join('\n') || 'Bounced',
+            step_by_step_duration: journey.join('\n') || 'Bounced',
             signer_name: signerName || '(unsigned)'
         });
     }
