@@ -687,7 +687,7 @@
     <p style="margin-top:0.25rem;">&copy; 2026 EULA Labs. This page is confidential and intended for the named recipient only.</p>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2/dist/jspdf.umd.min.js"></script>
 <script>
     // STATE
     let currentStep = 1;
@@ -822,6 +822,11 @@
 
     // DOWNLOAD LOI AS PDF
     function downloadLOI() {
+        if (!window.jspdf) {
+            alert('PDF library is still loading. Please wait a moment and try again.');
+            return;
+        }
+        try {
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF({ unit: 'mm', format: 'letter' });
         const pageW = doc.internal.pageSize.getWidth();
@@ -1108,6 +1113,10 @@
                 amount: formatCurrency(investAmount)
             });
         }
+        } catch(e) {
+            console.error('[EULA] PDF generation error:', e);
+            alert('PDF generation failed: ' + e.message + '. Try the Email option instead.');
+        }
     }
 
     // EMAIL LOI TO INVESTOR
@@ -1161,7 +1170,7 @@
     // =============================================
     // SEND EMAIL ALERT — builds {{details}} from data
     // =============================================
-    window.trackEvent = function(eventType, data, ccEmail) {
+    window.trackEvent = function(eventType, data) {
         if (typeof emailjs === 'undefined') {
             console.log('[EULA Tracker] EmailJS not loaded:', eventType, data);
             return;
@@ -1180,7 +1189,7 @@
             page: 'commit.html (Commitment Flow)',
             user_agent: navigator.userAgent.substr(0, 120),
             details: detailLines.join('\n'),
-            cc_email: ccEmail || ''
+            to_email: 'dbutler@eulaproperties.com'
         };
 
         emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_INVESTOR, params)
@@ -1297,7 +1306,7 @@
             page: 'Founding Steward Commitment',
             user_agent: '',
             details: loiContent,
-            cc_email: email
+            to_email: email
         })
         .then(function() {
             console.log('[EULA Tracker] LOI emailed to:', email);
