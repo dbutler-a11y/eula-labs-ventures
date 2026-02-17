@@ -1270,7 +1270,10 @@
     // SEND LOI COPY TO INVESTOR
     // =============================================
     window.sendInvestorLOI = function(email) {
-        if (typeof emailjs === 'undefined') return;
+        if (typeof emailjs === 'undefined') {
+            alert('Email service failed to load. Please refresh and try again.');
+            return;
+        }
 
         var ref = 'ELV-FS-' + new Date().toISOString().slice(0,10).replace(/-/g,'');
         var loiContent = [
@@ -1312,11 +1315,13 @@
             console.log('[EULA Tracker] LOI emailed to:', email);
             var s = document.getElementById('email-loi-status');
             if (s) { s.textContent = 'LOI sent to ' + email; s.style.color = '#38a169'; s.style.display = 'block'; }
+            alert('LOI sent to ' + email + '! Check your inbox (and spam folder).');
         })
         .catch(function(err) {
             console.log('[EULA Tracker] LOI email failed:', err);
             var s = document.getElementById('email-loi-status');
             if (s) { s.textContent = 'Failed to send — try downloading instead.'; s.style.color = '#e53e3e'; s.style.display = 'block'; }
+            alert('Email failed: ' + (err.text || err.message || JSON.stringify(err)));
         });
     };
 
