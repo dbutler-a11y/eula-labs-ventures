@@ -1091,7 +1091,179 @@
         }
 
         doc.save('EULA-Labs-LOI-' + signerName.replace(/\s+/g, '-') + '.pdf');
+
+        // Track PDF download
+        trackEvent('loi_pdf_downloaded', {
+            signer_name: signerName,
+            amount: formatCurrency(investAmount)
+        });
     }
+</script>
+
+<!-- ============================================ -->
+<!-- EMAILJS SDK -->
+<!-- ============================================ -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+(function() {
+    // =============================================
+    // EMAILJS CONFIG — REPLACE THESE AFTER SIGNUP
+    // =============================================
+    const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';       // emailjs.com → Account → Public Key
+    const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';      // emailjs.com → Email Services → Service ID
+    const EMAILJS_TEMPLATE_INVESTOR = 'YOUR_TEMPLATE_ID'; // emailjs.com → Email Templates → Template ID
+    // =============================================
+
+    // Init EmailJS
+    if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+    }
+
+    // Session info
+    const visitorId = 'V-' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+    const sessionStart = Date.now();
+    const referrer = document.referrer || 'direct';
+    const stepNames = { 1: 'Confirm Amount', 2: 'Term Sheet Review', 3: 'Sign LOI', 4: 'Wire Instructions' };
+    const stepTimes = {};
+    let currentTrackedStep = 1;
+    stepTimes[1] = Date.now();
+
+    // =============================================
+    // SEND EMAIL ALERT
+    // =============================================
+    window.trackEvent = function(eventType, data) {
+        if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+            console.log('[EULA Tracker] Alert (EmailJS not configured):', eventType, data);
+            return;
+        }
+
+        var params = {
+            event_type: eventType,
+            visitor_id: visitorId,
+            timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }),
+            referrer: referrer,
+            page: 'commit.html (Commitment Flow)',
+            user_agent: navigator.userAgent.substr(0, 120)
+        };
+
+        Object.keys(data).forEach(function(k) { params[k] = data[k]; });
+
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_INVESTOR, params)
+            .then(function() { console.log('[EULA Tracker] Alert sent:', eventType); })
+            .catch(function(err) { console.log('[EULA Tracker] Alert failed:', err); });
+    };
+
+    function formatTime(ms) {
+        var s = Math.round(ms / 1000);
+        if (s < 60) return s + 's';
+        var m = Math.floor(s / 60);
+        s = s % 60;
+        return m + 'm ' + s + 's';
+    }
+
+    // =============================================
+    // STEP PROGRESSION TRACKING
+    // =============================================
+    // Override goToStep to add tracking
+    var originalGoToStep = window.goToStep;
+    window.goToStep = function(step) {
+        // Record time on previous step
+        var prevStep = currentTrackedStep;
+        var timeOnPrev = Date.now() - (stepTimes[prevStep] || Date.now());
+        stepTimes[step] = Date.now();
+        currentTrackedStep = step;
+
+        // Call original
+        originalGoToStep(step);
+
+        // Send alert for step progression
+        trackEvent('step_reached', {
+            step_number: step,
+            step_name: stepNames[step] || 'Unknown',
+            previous_step: stepNames[prevStep] || 'Unknown',
+            time_on_previous: formatTime(timeOnPrev),
+            total_session_time: formatTime(Date.now() - sessionStart),
+            investment_amount: '$' + investAmount.toLocaleString()
+        });
+    };
+
+    // =============================================
+    // LOI SIGNATURE TRACKING (HIGH PRIORITY ALERT)
+    // =============================================
+    var originalSignLOI = window.signLOI;
+    window.signLOI = function() {
+        if (document.getElementById('sign-btn').disabled) return;
+
+        var name = document.getElementById('sig-name').value.trim();
+        var ref = 'ELV-FS-' + new Date().toISOString().slice(0,10).replace(/-/g,'');
+
+        // Build step journey summary
+        var journey = [];
+        var prevTime = sessionStart;
+        [1, 2, 3].forEach(function(s) {
+            if (stepTimes[s]) {
+                var duration = (stepTimes[s + 1] || Date.now()) - stepTimes[s];
+                journey.push(stepNames[s] + ': ' + formatTime(duration));
+            }
+        });
+
+        // CRITICAL ALERT — LOI SIGNED
+        trackEvent('loi_signed', {
+            signer_name: name,
+            investment_amount: '$' + investAmount.toLocaleString(),
+            reference: ref,
+            total_session_time: formatTime(Date.now() - sessionStart),
+            step_journey: journey.join('\n') || 'Direct',
+            message: 'FOUNDING STEWARD LOI SIGNED — ' + name + ' has signed a non-binding Letter of Intent for $' + investAmount.toLocaleString() + '. Reference: ' + ref + '. Awaiting wire transfer.'
+        });
+
+        // Call original
+        originalSignLOI();
+    };
+
+    // =============================================
+    // SESSION EXIT TRACKING
+    // =============================================
+    var exitAlertSent = false;
+    function sendExitAlert() {
+        if (exitAlertSent) return;
+        exitAlertSent = true;
+
+        var totalTime = Date.now() - sessionStart;
+        if (totalTime < 3000) return; // skip bounces
+
+        var journey = [];
+        [1, 2, 3, 4].forEach(function(s) {
+            if (stepTimes[s]) {
+                var next = null;
+                for (var n = s + 1; n <= 4; n++) {
+                    if (stepTimes[n]) { next = stepTimes[n]; break; }
+                }
+                var duration = (next || Date.now()) - stepTimes[s];
+                journey.push(stepNames[s] + ': ' + formatTime(duration));
+            }
+        });
+
+        var highestStep = 1;
+        [1, 2, 3, 4].forEach(function(s) { if (stepTimes[s]) highestStep = s; });
+
+        trackEvent('session_ended', {
+            highest_step_reached: stepNames[highestStep],
+            completed_loi: highestStep >= 4 ? 'YES' : 'NO',
+            investment_amount: '$' + investAmount.toLocaleString(),
+            total_session_time: formatTime(totalTime),
+            step_journey: journey.join('\n') || 'Bounced',
+            signer_name: signerName || '(unsigned)'
+        });
+    }
+
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'hidden') sendExitAlert();
+    });
+    window.addEventListener('beforeunload', sendExitAlert);
+
+})();
 </script>
 
 </body>

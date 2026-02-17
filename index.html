@@ -1039,6 +1039,174 @@
     });
 </script>
 
+<!-- ============================================ -->
+<!-- EMAILJS SDK -->
+<!-- ============================================ -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+(function() {
+    // =============================================
+    // EMAILJS CONFIG — REPLACE THESE AFTER SIGNUP
+    // =============================================
+    const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';       // emailjs.com → Account → Public Key
+    const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';      // emailjs.com → Email Services → Service ID
+    const EMAILJS_TEMPLATE_INVESTOR = 'YOUR_TEMPLATE_ID'; // emailjs.com → Email Templates → Template ID
+    // =============================================
+
+    // Init EmailJS
+    if (typeof emailjs !== 'undefined' && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+    }
+
+    // Generate visitor session ID
+    const visitorId = 'V-' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+    const sessionStart = Date.now();
+    const referrer = document.referrer || 'direct';
+
+    // =============================================
+    // SECTION TRACKING — Intersection Observer
+    // =============================================
+    const sectionData = {};
+    const trackedSections = [
+        { id: 'vision', name: 'The Vision' },
+        { id: 'property', name: 'Pembrook Property' },
+        { id: 'pillars', name: 'Three Pillars' },
+        { id: 'capital', name: 'Capital Structure' },
+        { id: 'regcf', name: 'Reg CF' },
+        { id: 'legal', name: 'Legal & Entity' },
+        { id: 'governance', name: 'Governance & Scoring' },
+        { id: 'profit', name: 'Profit Centers' },
+        { id: 'steward', name: 'Financial Steward' },
+        { id: 'invest', name: 'Investment Selector' }
+    ];
+
+    // Initialize tracking data
+    trackedSections.forEach(function(s) {
+        sectionData[s.id] = { name: s.name, totalTime: 0, enterTime: null, views: 0 };
+    });
+
+    // Observe sections coming into view
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            const id = entry.target.id;
+            if (!sectionData[id]) return;
+
+            if (entry.isIntersecting) {
+                sectionData[id].enterTime = Date.now();
+                sectionData[id].views++;
+            } else if (sectionData[id].enterTime) {
+                sectionData[id].totalTime += Date.now() - sectionData[id].enterTime;
+                sectionData[id].enterTime = null;
+            }
+        });
+    }, { threshold: 0.3 });
+
+    // Start observing after DOM ready
+    document.addEventListener('DOMContentLoaded', function() {
+        trackedSections.forEach(function(s) {
+            const el = document.getElementById(s.id);
+            if (el) observer.observe(el);
+        });
+    });
+
+    // =============================================
+    // CTA CLICK TRACKING
+    // =============================================
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctaBtn = document.getElementById('cta-button');
+        if (ctaBtn) {
+            ctaBtn.addEventListener('click', function() {
+                sendAlert('cta_clicked', {
+                    selected_amount: '$' + selectedAmount.toLocaleString(),
+                    time_on_page: formatTime(Date.now() - sessionStart),
+                    sections_viewed: getSectionSummary()
+                });
+            });
+        }
+    });
+
+    // =============================================
+    // SEND EMAIL ALERT
+    // =============================================
+    function sendAlert(eventType, data) {
+        if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+            console.log('[EULA Tracker] Alert (EmailJS not configured):', eventType, data);
+            return;
+        }
+
+        var params = {
+            event_type: eventType,
+            visitor_id: visitorId,
+            timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }),
+            referrer: referrer,
+            page: 'index.html (Investor Vision Site)',
+            user_agent: navigator.userAgent.substr(0, 120)
+        };
+
+        // Merge extra data
+        Object.keys(data).forEach(function(k) { params[k] = data[k]; });
+
+        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_INVESTOR, params)
+            .then(function() { console.log('[EULA Tracker] Alert sent:', eventType); })
+            .catch(function(err) { console.log('[EULA Tracker] Alert failed:', err); });
+    }
+
+    // =============================================
+    // SESSION SUMMARY ON PAGE EXIT
+    // =============================================
+    function getSectionSummary() {
+        // Finalize any sections still being viewed
+        trackedSections.forEach(function(s) {
+            if (sectionData[s.id].enterTime) {
+                sectionData[s.id].totalTime += Date.now() - sectionData[s.id].enterTime;
+                sectionData[s.id].enterTime = Date.now();
+            }
+        });
+
+        var lines = [];
+        trackedSections.forEach(function(s) {
+            var d = sectionData[s.id];
+            if (d.views > 0) {
+                lines.push(d.name + ': ' + formatTime(d.totalTime) + ' (' + d.views + ' view' + (d.views > 1 ? 's' : '') + ')');
+            }
+        });
+        return lines.join('\n') || 'No sections viewed';
+    }
+
+    function formatTime(ms) {
+        var s = Math.round(ms / 1000);
+        if (s < 60) return s + 's';
+        var m = Math.floor(s / 60);
+        s = s % 60;
+        return m + 'm ' + s + 's';
+    }
+
+    // Send session summary when leaving
+    var sessionAlertSent = false;
+    function sendSessionSummary() {
+        if (sessionAlertSent) return;
+        sessionAlertSent = true;
+
+        var totalTime = Date.now() - sessionStart;
+        if (totalTime < 5000) return; // Skip if less than 5 seconds (bot/bounce)
+
+        sendAlert('session_ended', {
+            total_time: formatTime(totalTime),
+            sections_viewed: getSectionSummary(),
+            selected_amount: typeof selectedAmount !== 'undefined' ? '$' + selectedAmount.toLocaleString() : 'none',
+            clicked_cta: document.querySelector('.invest-btn[style*="accent"]') ? 'yes' : 'no'
+        });
+    }
+
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'hidden') sendSessionSummary();
+    });
+    window.addEventListener('beforeunload', sendSessionSummary);
+
+})();
+</script>
+
 <!-- FOOTER -->
 <footer>
     <div class="container">
