@@ -1119,20 +1119,72 @@
         }
     }
 
-    // EMAIL LOI TO INVESTOR
+    // EMAIL LOI TO INVESTOR — self-contained, no dependencies
     function emailLOI() {
-        var email = window.investorEmail || (document.getElementById('investor-email') ? document.getElementById('investor-email').value.trim() : '');
+        var email = window.investorEmail || '';
+        var input = document.getElementById('investor-email');
+        if (!email && input) email = input.value.trim();
         if (!email) {
-            email = prompt('Enter your email address to receive a copy of the LOI:');
+            email = prompt('Enter your email address to receive the LOI:');
             if (!email || !email.trim()) return;
             email = email.trim();
         }
         window.investorEmail = email;
-        if (typeof window.sendInvestorLOI === 'function') {
-            window.sendInvestorLOI(email);
-        } else {
-            alert('Email service is loading. Please try again in a moment.');
+
+        if (typeof emailjs === 'undefined') {
+            alert('Email service not loaded yet. Please refresh (Cmd+Shift+R) and try again.');
+            return;
         }
+
+        var btn = document.getElementById('email-loi-btn');
+        if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; }
+
+        var ref = 'ELV-FS-' + new Date().toISOString().slice(0,10).replace(/-/g,'');
+        var loiText = [
+            'SIGNER: ' + (signerName || '(pending)'),
+            'INVESTMENT: $' + investAmount.toLocaleString(),
+            'REFERENCE: ' + ref,
+            'ROLE: Financial Steward',
+            'ENTITY: EULA Labs Ventures LLC (Delaware)',
+            '',
+            'CAPITAL DEPLOYMENT:',
+            '  50% — AI Agent & Consulting (immediate revenue)',
+            '  25% — Pembrook Compound Down Payment',
+            '  15% — Legal & Reg CF Filing',
+            '  10% — ARIA Prototype Development',
+            '',
+            'NEXT STEPS:',
+            '  1. Securities attorney engaged within 5 business days',
+            '  2. Operating agreement drafted within 14 business days',
+            '  3. EULA Labs Ventures LLC formed in Delaware',
+            '  4. Capital deployment per agreed timeline',
+            '',
+            'This is a non-binding Letter of Intent.',
+            'Contact: dbutler@eulaproperties.com'
+        ].join('\n');
+
+        emailjs.send('service_t5o7r2k', 'template_dzpo5f6', {
+            to_email: email,
+            event_type: 'Your Letter of Intent — EULA Labs',
+            visitor_id: signerName || 'Investor',
+            timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }),
+            referrer: 'EULA Labs Ventures',
+            page: 'Founding Steward Commitment',
+            user_agent: '',
+            details: loiText
+        })
+        .then(function() {
+            var s = document.getElementById('email-loi-status');
+            if (s) { s.textContent = 'LOI sent to ' + email; s.style.color = '#38a169'; s.style.display = 'block'; }
+            if (btn) { btn.textContent = 'Sent!'; }
+            alert('LOI sent to ' + email + '\n\nCheck your inbox and spam folder.');
+        })
+        .catch(function(err) {
+            var s = document.getElementById('email-loi-status');
+            if (s) { s.textContent = 'Failed — try downloading instead.'; s.style.color = '#e53e3e'; s.style.display = 'block'; }
+            if (btn) { btn.textContent = 'Email LOI to Me'; btn.disabled = false; }
+            alert('Email failed!\n\nError: ' + JSON.stringify(err));
+        });
     }
 </script>
 
@@ -1259,71 +1311,9 @@
                 message: 'FOUNDING STEWARD LOI SIGNED — ' + name + ' committed $' + investAmount.toLocaleString() + '. Ref: ' + ref + '. Awaiting wire.'
             });
 
-            // Auto-send LOI to investor if they provided email
-            if (email) {
-                window.sendInvestorLOI(email);
-            }
         } catch(e) { console.log('[EULA Tracker] Error:', e); }
     };
 
-    // =============================================
-    // SEND LOI COPY TO INVESTOR
-    // =============================================
-    window.sendInvestorLOI = function(email) {
-        if (typeof emailjs === 'undefined') {
-            alert('Email service failed to load. Please refresh and try again.');
-            return;
-        }
-
-        var ref = 'ELV-FS-' + new Date().toISOString().slice(0,10).replace(/-/g,'');
-        var loiContent = [
-            'SIGNER: ' + (signerName || '(pending)'),
-            'INVESTMENT: $' + investAmount.toLocaleString(),
-            'REFERENCE: ' + ref,
-            'ROLE: Financial Steward',
-            'ENTITY: EULA Labs Ventures LLC (Delaware)',
-            '',
-            'CAPITAL DEPLOYMENT:',
-            '  50% — AI Agent & Consulting (immediate revenue)',
-            '  25% — Pembrook Compound Down Payment',
-            '  15% — Legal & Reg CF Filing',
-            '  10% — ARIA Prototype Development',
-            '',
-            'NEXT STEPS:',
-            '  1. Securities attorney engaged within 5 business days',
-            '  2. Operating agreement drafted within 14 business days',
-            '  3. EULA Labs Ventures LLC formed in Delaware',
-            '  4. Capital deployment per agreed timeline',
-            '',
-            'This is a non-binding Letter of Intent.',
-            'The formal operating agreement will govern all rights and obligations.',
-            '',
-            'Contact: dbutler@eulaproperties.com'
-        ].join('\n');
-
-        emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_INVESTOR, {
-            event_type: 'Letter of Intent — ' + (signerName || 'Investor'),
-            visitor_id: signerName || email,
-            timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }),
-            referrer: 'EULA Labs Ventures',
-            page: 'Founding Steward Commitment',
-            user_agent: '',
-            details: loiContent,
-            to_email: email
-        })
-        .then(function() {
-            console.log('[EULA Tracker] LOI emailed to:', email);
-            var s = document.getElementById('email-loi-status');
-            if (s) { s.textContent = 'LOI sent to ' + email; s.style.color = '#38a169'; s.style.display = 'block'; }
-            alert('LOI sent to ' + email + '! Check your inbox (and spam folder).');
-        })
-        .catch(function(err) {
-            console.log('[EULA Tracker] LOI email failed:', err);
-            var s = document.getElementById('email-loi-status');
-            if (s) { s.textContent = 'Failed to send — try downloading instead.'; s.style.color = '#e53e3e'; s.style.display = 'block'; }
-            alert('Email failed: ' + (err.text || err.message || JSON.stringify(err)));
-        });
-    };
 
     // =============================================
     // SESSION EXIT TRACKING
