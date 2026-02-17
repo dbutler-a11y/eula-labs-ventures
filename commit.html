@@ -1175,15 +1175,15 @@
         })
         .then(function() {
             var s = document.getElementById('email-loi-status');
-            if (s) { s.textContent = 'LOI sent to ' + email; s.style.color = '#38a169'; s.style.display = 'block'; }
+            if (s) { s.textContent = 'LOI emailed to ' + email + ' — PDF downloading...'; s.style.color = '#38a169'; s.style.display = 'block'; }
             if (btn) { btn.textContent = 'Sent!'; }
-            alert('LOI sent to ' + email + '\n\nCheck your inbox and spam folder.');
+            // Auto-download PDF alongside the email
+            try { downloadLOI(); } catch(e) { console.log('PDF auto-download failed:', e); }
         })
         .catch(function(err) {
             var s = document.getElementById('email-loi-status');
             if (s) { s.textContent = 'Failed — try downloading instead.'; s.style.color = '#e53e3e'; s.style.display = 'block'; }
             if (btn) { btn.textContent = 'Email LOI to Me'; btn.disabled = false; }
-            alert('Email failed!\n\nError: ' + JSON.stringify(err));
         });
     }
 </script>
