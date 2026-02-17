@@ -1164,7 +1164,7 @@
         ].join('\n');
 
         emailjs.send('service_t5o7r2k', 'template_dzpo5f6', {
-            to_email: email,
+            email: email,
             event_type: 'Your Letter of Intent — EULA Labs',
             visitor_id: signerName || 'Investor',
             timestamp: new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' }),
@@ -1241,7 +1241,7 @@
             page: 'commit.html (Commitment Flow)',
             user_agent: navigator.userAgent.substr(0, 120),
             details: detailLines.join('\n'),
-            to_email: 'dbutler@eulaproperties.com'
+            email: 'dbutler@eulaproperties.com'
         };
 
         emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_INVESTOR, params)
